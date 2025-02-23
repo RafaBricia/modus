@@ -11,14 +11,14 @@ Modus é um projeto universitário que consiste no desenvolvimento de uma loja v
 O Modus tem como propósito permitir a navegação e compra de roupas de forma intuitiva e rápida. Ele inclui funcionalidades como:
 
 - Cadastro e gerenciamento de produtos
-- Interface interativa para os usuários
+- Interface interativa para os administradores
 - Conexão com banco de dados para armazenamento de informações
 
 ## Estrutura do Repositório
 
-📂 /frontend → Interface do usuário construída com React
-📂 /backend → API e lógica de negócios usando Node.js
-📂 /database → Configuração do MongoDB para armazenamento de dados
+📂 /frontend → Interface do usuário construída com React </br>
+📂 /backend → API e lógica de negócios usando Node.js </br>
+📂 /database → Configuração do MongoDB para armazenamento de dados </br>
 
 ## Tecnologias, linguagens e ferramentas usadas:
 
