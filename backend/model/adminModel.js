@@ -3,6 +3,26 @@ const { Schema } = mongoose;
 
 const admin = new Schema({
 
-  // add informações da coleção
+  nome: { 
+    type: String, 
+    required: true 
+  },
+
+  cpf: { 
+    type: Number, 
+    required: true
+   },
+
+  senha: { 
+    type: String, 
+    required: true 
+  },
+
+  email: { 
+    type: String, 
+    required: true 
+  }
 
 });
+
+module.exports = mongoose.model("admin", adminSchema);
