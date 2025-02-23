@@ -2,6 +2,23 @@
 Projeto universitário - Loja de roupas virtual - Modus
 </br>
 
+Modus é um projeto universitário que consiste no desenvolvimento de uma loja virtual de roupas. O sistema foi criado utilizando tecnologias modernas para oferecer uma experiência eficiente e escalável aos usuários.
+
+</br>
+
+## Objetivo do Projeto
+
+O Modus tem como propósito permitir a navegação e compra de roupas de forma intuitiva e rápida. Ele inclui funcionalidades como:
+
+- Cadastro e gerenciamento de produtos
+- Interface interativa para os usuários
+- Conexão com banco de dados para armazenamento de informações
+
+## Estrutura do Repositório
+
+📂 /frontend → Interface do usuário construída com React
+📂 /backend → API e lógica de negócios usando Node.js
+📂 /database → Configuração do MongoDB para armazenamento de dados
 
 ## Tecnologias, linguagens e ferramentas usadas:
 
@@ -35,7 +52,7 @@ Projeto universitário - Loja de roupas virtual - Modus
 </br>
 
 
-## Como clonar repositório:
+## Como clonar o repositório:
 
 1) Certifique-se que você tem o git instalado e um ambiente para clonar o repositório:
 
