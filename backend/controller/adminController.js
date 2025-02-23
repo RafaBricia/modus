@@ -157,7 +157,7 @@ const putAdmin = async (req, res) => {
 
         }
       
-        let Admin = await Task.findByIdAndUpdate(id, { nome, cpf, senha, email });
+        let Admin = await Admin.findByIdAndUpdate(id, { nome, cpf, senha, email });
         
         res.status(200).json({
           message: 'Administrador atualizado com sucesso!',
