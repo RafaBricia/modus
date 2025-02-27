@@ -8,14 +8,15 @@ function valorValido(valor){
     return typeof valor === "number" && !isNaN(valor) && (valor.length > 0);
 }
 
-function produtoExistente(pdt){
-    //perguntar a professora sobre essa função, se deve puxar pelo id
+function produtoExistente(id) {
+    const produto = Produto.findById(id);
+    return !!produto;
 }
 
-function verificarDescricao(dsc){
-// criar função para ver se não foi preenchido só com espaços
-
+function verificarDescricao(descricao) {
+    return typeof descricao === "string" && descricao.trim().length > 0;
 }
+
 
 
 

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const admin = new Schema({
+const cliente = new Schema({
 
   nome: { 
     type: String, 
@@ -25,4 +25,4 @@ const admin = new Schema({
 
 });
 
-module.exports = mongoose.model("admin", adminSchema);
+module.exports = mongoose.model("cliente", clienteSchema);

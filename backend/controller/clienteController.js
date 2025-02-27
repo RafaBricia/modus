@@ -1,4 +1,4 @@
-const Admin = require("../model/adminModel");
+const Cliente = require("../model/clienteModel");
 
 function verificarCPFValido(cpf){
     return Number.isInteger(cpf) && cpf.length === 11 && /^\d+$/.test(cpf)
@@ -14,7 +14,7 @@ function validarSenha(senha){
     return regex.test(senha) && senha.trim().length > 0;
 }
 
-const postAdmin = async (req, res) => {
+const postCliente = async (req, res) => {
 
 
     try{
@@ -53,25 +53,25 @@ const postAdmin = async (req, res) => {
 
         }
 
-        const newAdmin = new Admin({
+        const newCliente = new Cliente({
           nome,
           cpf,
           senha,
           email
         });
 
-        await newAdmin.save();
+        await newCliente.save();
 
         res.json({
-          message: "Novo administrador foi criado!",
-          Admin: newAdmin,
+          message: "Novo Clienteistrador foi criado!",
+          Cliente: newCliente,
         });
       
 
     } catch(error) {
 
         res.status(500).res.json({
-            message: 'Administrador não foi criado.',
+            message: 'Clienteistrador não foi criado.',
             error: error.message,
         })
 
@@ -80,16 +80,16 @@ const postAdmin = async (req, res) => {
 };
 
 
-const getAllAdmins = async (req, res) => {
+const getAllClientes = async (req, res) => {
 
   try {
 
-    const admins = await Admin.find();
-    res.json(admins);
+    const Clientes = await Cliente.find();
+    res.json(Clientes);
 
   } catch(error){
     res.status(500).json({
-        message: 'Não é possível listar os administradores.'
+        message: 'Não é possível listar os Clienteistradores.'
     })
   }
 
@@ -98,19 +98,19 @@ const getAllAdmins = async (req, res) => {
 
 
 
-const deleteAdmin = async (req, res) => {
+const deleteCliente = async (req, res) => {
 
     try{
 
         const { id } = req.params;
 
-        await Admin.deleteOne({_id: id})
-        res.json({ message: 'Administrador foi deletado com sucesso!' });
+        await Cliente.deleteOne({_id: id})
+        res.json({ message: 'Clienteistrador foi deletado com sucesso!' });
 
     } catch(error){
 
         res.status(500).json({
-            message: 'Não é possível listar os administradores.'
+            message: 'Não é possível listar os Clienteistradores.'
         })
 
     }
@@ -118,7 +118,7 @@ const deleteAdmin = async (req, res) => {
 };
 
 
-const putAdmin = async (req, res) => {
+const putCliente = async (req, res) => {
 
     try{
 
@@ -157,20 +157,20 @@ const putAdmin = async (req, res) => {
 
         }
       
-        let Admin = await Admin.findByIdAndUpdate(id, { nome, cpf, senha, email });
+        let Cliente = await Cliente.findByIdAndUpdate(id, { nome, cpf, senha, email });
         
         res.status(200).json({
-          message: 'Administrador atualizado com sucesso!',
-          Admin,
+          message: 'Clienteistrador atualizado com sucesso!',
+          Cliente,
         });
 
     } catch(error){
 
         res.status(500).json({
-            message: 'Não é possível listar os administradores.'
+            message: 'Não é possível listar os Clienteistradores.'
         })
 
     }
 };
 
-module.exports = { getAllAdmins, postAdmin, putAdmin, deleteAdmin };
+module.exports = { getAllClientes, postCliente, putCliente, deleteCliente };

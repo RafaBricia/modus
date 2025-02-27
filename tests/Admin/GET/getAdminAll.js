@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../app"); // Importa a instância do Express
+const app = require("../../app.js"); // Importa a instância do Express
 
 describe("GET /admin", () => {
   test("Deve retornar uma lista de administradores", async () => {

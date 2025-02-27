@@ -8,8 +8,9 @@ function valorValido(valor){
     return typeof valor === "number" && !isNaN(valor) && (valor.length > 0);
 }
 
-function produtoExistente(produto){
-    //perguntar a professora sobre essa função, se deve puxar pelo id
+function produtoExistente(id) {
+    const produto = Produto.findById(id);
+    return !!produto;
 }
 
 const postCarrinho = async (req, res) => {

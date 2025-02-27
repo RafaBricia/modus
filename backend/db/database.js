@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 const server = 'localhost:27017'; 
-const database = ''; // botar o nome do banco
+const database = 'modusDB'; // botar o nome do banco
 
 class Database {
   constructor() {
