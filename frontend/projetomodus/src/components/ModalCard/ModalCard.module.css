@@ -1,0 +1,10 @@
+.modalCard{
+    background-color: var(--branco);
+    width: 370px;
+    height: 190px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
