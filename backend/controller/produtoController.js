@@ -1,199 +1,97 @@
 const Produto = require("../model/ProdutoModel.js");
 
-function verificarCategoria(qnt){
-    return Number.isInteger(qnt) && (qnt.length > 0); // alterar dps conforme a qnt existente puxando no banco
+function verificarCategoria(categoria) {
+    return typeof categoria === "string" && categoria.trim().length > 0;
 }
 
-function valorValido(valor){
-    return typeof valor === "number" && !isNaN(valor) && (valor.length > 0);
-}
-
-function produtoExistente(id) {
-    const produto = Produto.findById(id);
-    return !!produto;
+function valorValido(valor) {
+    return typeof valor === "number" && !isNaN(valor) && valor > 0;
 }
 
 function verificarDescricao(descricao) {
     return typeof descricao === "string" && descricao.trim().length > 0;
 }
 
-
-
-
 const postProduto = async (req, res) => {
-
-
-    try{
-
+    try {
         const { categoria, tamanho, descricao, valor, nome } = req.body;
-      
-        if (!categoria || !valor || !nome || !descricao || !tamanho ) {
-             
-            return res.status(400).json({
-                message: 'Todos os campos são obrigatórios'
-            })
 
+        if (!categoria || !valor || !nome || !descricao || !tamanho) {
+            return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-        if (!(verificarCategoria(categoria))) {
-
-            return res.status(400).json({
-                message: 'Quantidade deve ser um válido.'
-            })
-
+        if (!verificarCategoria(categoria)) {
+            return res.status(400).json({ message: 'Categoria deve ser válida.' });
         }
 
-        if (!(valorValido(valor))) {
-
-            return res.status(400).json({
-                message: 'Valor precisa ser válido'
-            })
-
+        if (!valorValido(valor)) {
+            return res.status(400).json({ message: 'Valor deve ser um número positivo.' });
         }
 
-        if (!(verificarDescricao(descricao))) {
-
-            return res.status(400).json({
-                message: 'Descrição precisa ser preenchida.'
-            })
-
+        if (!verificarDescricao(descricao)) {
+            return res.status(400).json({ message: 'Descrição precisa ser preenchida.' });
         }
 
-        if (!(produtoExistente(pdt))) {
-
-            return res.status(400).json({
-                message: 'Produto precisa existir.'
-            })
-
-        }
-
-
-        const newProduto = new Produto({
-            categoria, 
-            tamanho, 
-            descricao, 
-            valor, 
-            nome
-        });
-
+        const newProduto = new Produto({ categoria, tamanho, descricao, valor, nome });
         await newProduto.save();
 
-        res.json({
-          message: "Novo Produto foi criado!",
-          Produto: newProduto,
-        });
-      
+        res.json({ message: "Novo Produto foi criado!", Produto: newProduto });
 
-    } catch(error) {
-
-        res.status(500).res.json({
-            message: 'Produto não foi criado.',
-            error: error.message,
-        })
-
+    } catch (error) {
+        res.status(500).json({ message: 'Produto não foi criado.', error: error.message });
     }
-
 };
-
 
 const getAllProdutos = async (req, res) => {
-
-  try {
-
-    const Produtos = await Produto.find();
-    res.json(Produtos);
-
-  } catch(error){
-    res.status(500).json({
-        message: 'Não é possível listar os Produtos.'
-    })
-  }
-
-
+    try {
+        const produtos = await Produto.find();
+        res.json(produtos);
+    } catch (error) {
+        res.status(500).json({ message: 'Não foi possível listar os produtos.' });
+    }
 };
-
-
 
 const deleteProduto = async (req, res) => {
-
-    try{
-
+    try {
         const { id } = req.params;
-
-        await Produto.deleteOne({_id: id})
+        await Produto.deleteOne({ _id: id });
         res.json({ message: 'Produto foi deletado com sucesso!' });
-
-    } catch(error){
-
-        res.status(500).json({
-            message: 'Não é possível listar os Produtoes.'
-        })
-
+    } catch (error) {
+        res.status(500).json({ message: 'Não foi possível deletar o produto.' });
     }
-
 };
 
-
 const putProduto = async (req, res) => {
-
-    try{
-
+    try {
         const { id } = req.params;
         const { categoria, tamanho, descricao, valor, nome } = req.body;
-      
-        if ( !categoria || !valor || !nome || !descricao || !tamanho ) {
-             
-            return res.status(400).json({
-                message: 'Todos os campos são obrigatórios'
-            })
 
+        if (!categoria || !valor || !nome || !descricao || !tamanho) {
+            return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-        if (!(verificarCategoria(categoria))) {
-
-            return res.status(400).json({
-                message: 'Quantidade deve ser um válido.'
-            })
-
+        if (!verificarCategoria(categoria)) {
+            return res.status(400).json({ message: 'Categoria deve ser válida.' });
         }
 
-        if (!(valorValido(valor))) {
-
-            return res.status(400).json({
-                message: 'Valor precisa ser válido'
-            })
-
+        if (!valorValido(valor)) {
+            return res.status(400).json({ message: 'Valor deve ser um número positivo.' });
         }
 
-        if (!(verificarDescricao(descricao))) {
-
-            return res.status(400).json({
-                message: 'Descrição precisa ser preenchida.'
-            })
-
+        if (!verificarDescricao(descricao)) {
+            return res.status(400).json({ message: 'Descrição precisa ser preenchida.' });
         }
 
-        if (!(produtoExistente(pdt))) {
+        const produtoAtualizado = await Produto.findByIdAndUpdate(id, { categoria, tamanho, descricao, valor, nome }, { new: true });
 
-            return res.status(400).json({
-                message: 'Produto precisa existir.'
-            })
-
+        if (!produtoAtualizado) {
+            return res.status(404).json({ message: 'Produto não encontrado.' });
         }
 
-        let Produto = await Produto.findByIdAndUpdate(id, { categoria, tamanho, descricao, valor, nome });
-        
-        res.status(200).json({
-          message: 'Produto atualizado com sucesso!',
-          Produto,
-        });
+        res.status(200).json({ message: 'Produto atualizado com sucesso!', Produto: produtoAtualizado });
 
-    } catch(error){
-
-        res.status(500).json({
-            message: 'Não é possível listar os Produtos.'
-        })
-
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao atualizar produto.', error: error.message });
     }
 };
 

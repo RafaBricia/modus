@@ -1,175 +1,95 @@
 const Cliente = require("../model/clienteModel");
 
-function verificarCPFValido(cpf){
-    return Number.isInteger(cpf) && cpf.length === 11 && /^\d+$/.test(cpf)
+function verificarCPFValido(cpf) {
+    return typeof cpf === "string" && cpf.length === 11 && /^\d+$/.test(cpf);
 }
 
-function validarEmail(email){
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+function validarEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
 
-function validarSenha(senha){
-    const regex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
-    return regex.test(senha) && senha.trim().length > 0;
+function validarSenha(senha) {
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d).{6,10}$/; // Senha entre 6 e 10 caracteres, letras e números
+    return regex.test(senha);
 }
 
 const postCliente = async (req, res) => {
-
-
-    try{
-
+    try {
         const { nome, cpf, senha, email } = req.body;
-      
+
         if (!nome || !cpf || !senha || !email) {
-             
-            return res.status(400).json({
-                message: 'Todos os campos são obrigatórios'
-            })
-
+            return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-        if (!(verificarCPFValido(cpf))) {
-
-            return res.status(400).json({
-                message: 'CPF precisa ser um número e ter 11 caracteres'
-            })
-
+        if (!verificarCPFValido(cpf)) {
+            return res.status(400).json({ message: 'CPF deve conter 11 dígitos numéricos' });
         }
 
-        if (!(validarEmail(email))) {
-
-            return res.status(400).json({
-                message: 'email precisa ser válido'
-            })
-
+        if (!validarEmail(email)) {
+            return res.status(400).json({ message: 'E-mail inválido' });
         }
 
-        if (!(validarSenha(senha))) {
-
-            return res.status(400).json({
-                message: 'Senha precisa ser válida. Maior que 5 caracteres e menor que 10'
-            })
-
+        if (!validarSenha(senha)) {
+            return res.status(400).json({ message: 'A senha deve ter entre 6 e 10 caracteres, incluindo letras e números' });
         }
 
-        const newCliente = new Cliente({
-          nome,
-          cpf,
-          senha,
-          email
-        });
-
+        const newCliente = new Cliente({ nome, cpf, senha, email });
         await newCliente.save();
 
-        res.json({
-          message: "Novo Clienteistrador foi criado!",
-          Cliente: newCliente,
-        });
-      
+        res.json({ message: "Novo Cliente criado!", Cliente: newCliente });
 
-    } catch(error) {
-
-        res.status(500).res.json({
-            message: 'Clienteistrador não foi criado.',
-            error: error.message,
-        })
-
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao criar Cliente.', error: error.message });
     }
-
 };
-
 
 const getAllClientes = async (req, res) => {
-
-  try {
-
-    const Clientes = await Cliente.find();
-    res.json(Clientes);
-
-  } catch(error){
-    res.status(500).json({
-        message: 'Não é possível listar os Clienteistradores.'
-    })
-  }
-
-
+    try {
+        const clientes = await Cliente.find();
+        res.json(clientes);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao listar os Clientes.' });
+    }
 };
-
-
 
 const deleteCliente = async (req, res) => {
-
-    try{
-
+    try {
         const { id } = req.params;
-
-        await Cliente.deleteOne({_id: id})
-        res.json({ message: 'Clienteistrador foi deletado com sucesso!' });
-
-    } catch(error){
-
-        res.status(500).json({
-            message: 'Não é possível listar os Clienteistradores.'
-        })
-
+        await Cliente.deleteOne({ _id: id });
+        res.json({ message: 'Cliente deletado com sucesso!' });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao deletar Cliente.' });
     }
-
 };
 
-
 const putCliente = async (req, res) => {
-
-    try{
-
+    try {
         const { id } = req.params;
         const { nome, cpf, senha, email } = req.body;
 
         if (!nome || !cpf || !senha || !email) {
-             
-            return res.status(400).json({
-                message: 'Todos os campos são obrigatórios'
-            })
-
+            return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-        if (!(verificarCPFValido(cpf))) {
-
-            return res.status(400).json({
-                message: 'CPF precisa ser um número e ter 11 caracteres'
-            })
-
+        if (!verificarCPFValido(cpf)) {
+            return res.status(400).json({ message: 'CPF deve conter 11 dígitos numéricos' });
         }
 
-        if (!(validarEmail(email))) {
-
-            return res.status(400).json({
-                message: 'email precisa ser válido'
-            })
-
+        if (!validarEmail(email)) {
+            return res.status(400).json({ message: 'E-mail inválido' });
         }
 
-        if (!(validarSenha(senha))) {
-
-            return res.status(400).json({
-                message: 'Senha precisa ser válida. Maior que 5 caracteres e menor que 10'
-            })
-
+        if (!validarSenha(senha)) {
+            return res.status(400).json({ message: 'A senha deve ter entre 6 e 10 caracteres, incluindo letras e números' });
         }
-      
-        let Cliente = await Cliente.findByIdAndUpdate(id, { nome, cpf, senha, email });
-        
-        res.status(200).json({
-          message: 'Clienteistrador atualizado com sucesso!',
-          Cliente,
-        });
 
-    } catch(error){
+        const clienteAtualizado = await Cliente.findByIdAndUpdate(id, { nome, cpf, senha, email }, { new: true });
 
-        res.status(500).json({
-            message: 'Não é possível listar os Clienteistradores.'
-        })
+        res.status(200).json({ message: 'Cliente atualizado com sucesso!', Cliente: clienteAtualizado });
 
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao atualizar Cliente.' });
     }
 };
 
