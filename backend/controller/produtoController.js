@@ -1,28 +1,41 @@
 const Produto = require("../model/ProdutoModel.js");
 
 function verificarCategoria(categoria) {
-    return typeof categoria === "string" && categoria.trim().length > 0;
+    try{
+        return typeof categoria === "string" && categoria.trim().length > 0;
+
+    }catch(error){
+        return error
+
+    }
 }
 
 function valorValido(valor) {
-    return typeof valor === "number" && !isNaN(valor) && valor > 0;
+    try{
+        return typeof valor === "number" && !isNaN(valor) && valor > 0;
+
+    }catch(error){
+        return error
+
+    }
 }
 
-function verificarDescricao(descricao) {
-    return typeof descricao === "string" && descricao.trim().length > 0;
-}
 
 const postProduto = async (req, res) => {
     try {
+
         const { categoria, tamanho, descricao, valor, nome } = req.body;
 
         if (!categoria || !valor || !nome || !descricao || !tamanho) {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-        if (!verificarCategoria(categoria)) {
-            return res.status(400).json({ message: 'Categoria deve ser válida.' });
+
+        const categoriasPermitidas = ["Cartão", "Pix", "Boleto"];
+        if (!categoriasPermitidas.includes(categoria)) {
+            return res.status(400).json({ message: 'Categoria deve ser válida' });
         }
+
 
         if (!valorValido(valor)) {
             return res.status(400).json({ message: 'Valor deve ser um número positivo.' });
@@ -31,6 +44,12 @@ const postProduto = async (req, res) => {
         if (!verificarDescricao(descricao)) {
             return res.status(400).json({ message: 'Descrição precisa ser preenchida.' });
         }
+        
+        const tamanhoPermitidas = ["P", "M", "G", "GG", "XG"];
+        if (!tamanhoPermitidas.includes(tamanho)) {
+            return res.status(400).json({ message: 'Tamanho deve ser válido' });
+        }
+
 
         const newProduto = new Produto({ categoria, tamanho, descricao, valor, nome });
         await newProduto.save();
@@ -50,6 +69,21 @@ const getAllProdutos = async (req, res) => {
         res.status(500).json({ message: 'Não foi possível listar os produtos.' });
     }
 };
+
+const getProduto = async (req, res) => {
+    
+    try{
+        const { id } = req.params;
+        const produto = await Produto.findById({ _id: id });
+        res.json(produto);
+
+    } catch(error){
+        res.status(500).json({ message: 'Não foi possível encontrar esse Produto.', error: error.message });
+
+    }
+
+}
+
 
 const deleteProduto = async (req, res) => {
     try {
@@ -95,4 +129,4 @@ const putProduto = async (req, res) => {
     }
 };
 
-module.exports = { getAllProdutos, postProduto, putProduto, deleteProduto };
+module.exports = { getAllProdutos, getProduto, postProduto, putProduto, deleteProduto };

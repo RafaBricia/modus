@@ -2,16 +2,35 @@ const Carrinho = require("../model/carrinhoModel.js");
 const Produto = require("../model/produtoModel.js");
 
 function verificarQuantidadValida(qnt) {
-    return Number.isInteger(qnt) && qnt > 0;
+
+    try{
+        return Number.isInteger(qnt) && qnt > 0;
+
+    } catch(error){
+        return error
+
+    }
 }
 
 function valorValido(valor) {
-    return typeof valor === "number" && !isNaN(valor) && valor > 0;
+
+    try{
+        return typeof valor === "number" && !isNaN(valor) && valor > 0;
+
+    } catch(error){
+        return error
+
+    }   
 }
 
 async function produtoExistente(id) {
-    const produto = await Produto.findById(id);
-    return !!produto;
+    try{
+        const produto = await Produto.findById(id);
+        return !!produto;
+
+    } catch(error){
+        return error 
+    }
 }
 
 const postCarrinho = async (req, res) => {
@@ -52,6 +71,20 @@ const getAllCarrinhos = async (req, res) => {
         res.status(500).json({ message: 'Não é possível listar os Carrinhos.' });
     }
 };
+
+const getCarrinho = async (req, res) => {
+    
+    try{
+        const { id } = req.params;
+        const carrinho = await Carrinho.findById({ _id: id });
+        res.json(carrinho);
+
+    } catch(error){
+        res.status(500).json({ message: 'Não foi possível encontrar esse Carrinho.', error: error.message });
+
+    }
+
+}
 
 const deleteCarrinho = async (req, res) => {
     try {
@@ -97,4 +130,4 @@ const putCarrinho = async (req, res) => {
     }
 };
 
-module.exports = { getAllCarrinhos, postCarrinho, putCarrinho, deleteCarrinho };
+module.exports = { getAllCarrinhos, getCarrinho, postCarrinho, putCarrinho, deleteCarrinho };

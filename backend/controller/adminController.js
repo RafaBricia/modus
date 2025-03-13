@@ -1,4 +1,5 @@
-const Cliente = require("../model/clienteModel");
+const Administrador = require("../model/adminModel.js");
+
 
 function verificarCPFValido(cpf) {
     try{
@@ -32,7 +33,7 @@ function validarSenha(senha) {
     }
 }
 
-const postCliente = async (req, res) => {
+const postAdministrador = async (req, res) => {
     try {
         const { nome, cpf, senha, email } = req.body;
 
@@ -52,52 +53,49 @@ const postCliente = async (req, res) => {
             return res.status(400).json({ message: 'A senha deve ter entre 6 e 10 caracteres, incluindo letras e números' });
         }
 
-        const newCliente = new Cliente({ nome, cpf, senha, email });
-        await newCliente.save();
+        const newAdministrador = new Administrador({ nome, cpf, senha, email });
+        await newAdministrador.save();
 
-        res.json({ message: "Novo Cliente criado!", Cliente: newCliente });
+        res.json({ message: "Novo Administrador criado!", Administrador: newAdministrador });
 
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao criar Cliente.', error: error.message });
+        res.status(500).json({ message: 'Erro ao criar Administrador.', error: error.message });
     }
-};
-
-const getAllClientes = async (req, res) => {
-    try {
-        const clientes = await Cliente.find();
-        res.json(clientes);
-    } catch (error) {
-        res.status(500).json({ message: 'Erro ao listar os Clientes.' });
-    }
-};
-
-const getCliente = async (req, res) => {
-    
-    try{
-        const { id } = req.params;
-        const cliente = await Cliente.findById({ _id: id });
-        res.json(cliente);
-
-    } catch(error){
-        res.status(500).json({ message: 'Não foi possível encontrar esse cliente.', error: error.message });
-
-    }
-
 }
 
-const deleteCliente = async (req, res) => {
+const getAllAdministrador = async (req, res) => {
     try {
-        const { id } = req.params;
-        await Cliente.deleteOne({ _id: id });
-        res.json({ message: 'Cliente deletado com sucesso!' });
+        const administradores = await Administrador.find();
+        res.json(administradores);
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao deletar Cliente.' });
+        res.status(500).json({ message: 'Erro ao listar os administradores.' });
     }
-};
+}
 
-const putCliente = async (req, res) => {
+const getAdministrador = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const administrador = await Administrador.findById({ _id: id });
+        res.json(administrador);
+
+    } catch(error){
+        res.status(500).json({ message: 'Não foi possível encontrar esse administrador.', error: error.message });
+
+    }
+}
+
+const deleteAdministrador = async (req, res) => {
     try {
         const { id } = req.params;
+        await Administrador.deleteOne({ _id: id });
+        res.json({ message: 'Administrador deletado com sucesso!' });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao deletar Administrador.' });
+    }
+}
+
+const putAdministrador = async (req, res) => {
+    try {
         const { nome, cpf, senha, email } = req.body;
 
         if (!nome || !cpf || !senha || !email) {
@@ -116,13 +114,14 @@ const putCliente = async (req, res) => {
             return res.status(400).json({ message: 'A senha deve ter entre 6 e 10 caracteres, incluindo letras e números' });
         }
 
-        const clienteAtualizado = await Cliente.findByIdAndUpdate(id, { nome, cpf, senha, email }, { new: true });
 
-        res.status(200).json({ message: 'Cliente atualizado com sucesso!', Cliente: clienteAtualizado });
+        const adminAtualizado = await Administrador.findByIdAndUpdate(id, { nome, cpf, senha, email }, { new: true });
+
+        res.status(200).json({ message: 'Administrador atualizado com sucesso!', Administrador: adminAtualizado });
 
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao atualizar Cliente.' });
+        res.status(500).json({ message: 'Erro ao atualizar Administrador.' });
     }
-};
+}
 
-module.exports = { getAllClientes,getCliente, postCliente, putCliente, deleteCliente };
+module.exports = { getAdministrador, getAllAdministrador, deleteAdministrador, putAdministrador, postAdministrador };

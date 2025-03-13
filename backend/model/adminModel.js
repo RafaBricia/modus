@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
+const { Schema } = mongoose;
 import bcrypt from 'bcrypt';
 
-const { Schema } = mongoose;
+const adminSchema = new Schema({
 
-const clienteSchema = new Schema({
   nome: { 
     type: String, 
     required: true 
@@ -11,9 +11,8 @@ const clienteSchema = new Schema({
 
   cpf: { 
     type: Number, 
-    required: true,
-    unique: true
-  },
+    required: true
+   },
 
   senha: { 
     type: String, 
@@ -22,13 +21,12 @@ const clienteSchema = new Schema({
 
   email: { 
     type: String, 
-    required: true,
-    unique: true
+    required: true 
   }
+
 });
 
-
-clienteSchema.pre('save', async function(next) {
+adminSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('senha')) {
     try {
       const hashedPassword = await bcrypt.hash(this.senha, 10);
@@ -42,7 +40,7 @@ clienteSchema.pre('save', async function(next) {
   }
 });
 
-clienteSchema.methods.isCorrectPassword =  function(password, callback) {
+adminSchema.methods.isCorrectPassword =  function(password, callback) {
   bcrypt.compare(password, this.senha, function(err, same) {
     if (err) {
       callback(err);
@@ -52,4 +50,4 @@ clienteSchema.methods.isCorrectPassword =  function(password, callback) {
   });
 }
 
-export default mongoose.model("Cliente", clienteSchema);
+module.exports = mongoose.model("admin", adminSchema);

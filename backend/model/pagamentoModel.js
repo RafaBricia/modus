@@ -5,7 +5,8 @@ const pagamento = new Schema({
 
   metodo: { 
     type: String, 
-    required: true 
+    required: true,
+    enum: [ "Cartão", "Pix", "Boleto" ]
   },
 
   valor: { 
@@ -19,7 +20,7 @@ const pagamento = new Schema({
     required: true 
   },
 
-  status: { // verificar se vai existir mesmo
+  status: { 
     type: String, 
     required: true,
     enum: [ "Efetuado", "Não Efetuado" ]
@@ -28,3 +29,4 @@ const pagamento = new Schema({
 });
 
 module.exports = mongoose.model("pagamento", pagamentoSchema);
+
