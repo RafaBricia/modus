@@ -16,9 +16,11 @@ O Modus tem como propósito permitir a navegação e compra de roupas de forma i
 
 ## Estrutura do Repositório
 
-📂 /frontend → Interface do usuário construída com React </br>
-📂 /backend → API e lógica de negócios usando Node.js </br>
-📂 /database → Configuração do MongoDB para armazenamento de dados </br>
+📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/frontend/projetomodus">/frontend →</a> Interface do usuário construída com React </br>
+📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/backend">/backend →</a> API e lógica de negócios usando Node.js </br>
+📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/backend/db">/database → Configuração do MongoDB para armazenamento de dados </br>
+📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/tests">/tests →</a> 
+
 
 ## Tecnologias, linguagens e ferramentas usadas:
 
@@ -77,5 +79,148 @@ git clone https://github.com/endereçoDoSeuRepositório.git
  ``` 
 </br>
 
+
+## Designer - FIGMA
+
+Clique <a href="https://www.figma.com/design/h9sw9gfp0emLTb0eYcmw5q/projeto-Modus?node-id=1-3&t=QIl3OY8Imi4ZyR9H-0">aqui</a> para ver o design no figma
+
+## Gerenciamento de tarefas
+
+Clique <a href="https://github.com/users/RafaBricia/projects/3">aqui</a> para ver o gerenciamento de tarefas
+
 ## Direcionamento de pastas
+
+├── backend<br>
+│   ├── controller<br>
+│   │   ├── adminController.js<br>
+│   │   ├── carrinhoController.js<br>
+│   │   ├── categoriaController.js<br>
+│   │   ├── clienteController.js<br>
+│   │   ├── loginController.js<br>
+│   │   ├── middleware<br>
+│   │   │   └── middlewareAuth.js<br>
+│   │   ├── pagamentoController.js<br>
+│   │   ├── pedidosController.js<br>
+│   │   └── produtoController.js<br>
+│   ├── db<br>
+│   │   └── database.js<br>
+│   ├── index.js<br>
+│   ├── model<br>
+│   │   ├── adminModel.js<br>
+│   │   ├── carrinhoModel.js<br>
+│   │   ├── categoriaModel.js<br>
+│   │   ├── clienteModel.js<br>
+│   │   ├── pagamentoModel.js<br>
+│   │   ├── pedidosModel.js<br>
+│   │   └── produtoModel.js<br>
+│   ├── package.json<br>
+│   ├── package-lock.json<br>
+│   └── route<br>
+│       ├── adminRoute.js<br>
+│       ├── carrinhoRoute.js<br>
+│       ├── categoriaRoute.js<br>
+│       ├── clienteRoute.js<br>
+│       ├── loginRoute.js<br>
+│       ├── pagamentoRoute.js<br>
+│       ├── pedidosRoute.js<br>
+│       └── produtoRoute.js<br>
+├── frontend<br>
+│   └── projetomodus<br>
+│       ├── eslint.config.js<br>
+│       ├── index.html<br>
+│       ├── package.json<br>
+│       ├── package-lock.json<br>
+│       ├── public<br>
+│       │   ├── logoEncurtada.png<br>
+│       │   └── logo.png<br>
+│       ├── src<br>
+│       │   ├── App.css<br>
+│       │   ├── App.jsx<br>
+│       │   ├── assets<br>
+│       │   ├── components<br>
+│       │   │   ├── Card<br>
+│       │   │   │   ├── Card.jsx<br>
+│       │   │   │   └── Card.module.css<br>
+│       │   │   ├── Logo<br>
+│       │   │   │   ├── Logo.jsx<br>
+│       │   │   │   └── Logo.module.css<br>
+│       │   │   ├── ModalAdmin<br>
+│       │   │   │   ├── ModalAdmin.jsx<br>
+│       │   │   │   └── ModalAdmin.module.css<br>
+│       │   │   ├── ModalCard<br>
+│       │   │   │   ├── ModalCard.jsx<br>
+│       │   │   │   └── ModalCard.module.css<br>
+│       │   │   ├── NavBar<br>
+│       │   │   │   ├── NavBar.jsx<br>
+│       │   │   │   └── NavBar.module.css<br>
+│       │   │   ├── PagEditarProduto<br>
+│       │   │   │   ├── PagEditarProduto.jsx<br>
+│       │   │   │   └── PagEditarProduto.module.css<br>
+│       │   │   └── Produto<br>
+│       │   │       └── ListarProduto.jsx<br>
+│       │   ├── index.css<br>
+│       │   ├── main.jsx<br>
+│       │   └── routes<br>
+│       │       ├── Home<br>
+│       │       │   ├── Home.jsx<br>
+│       │       │   └── Home.module.css<br>
+│       │       └── PagCategorie<br>
+│       │           ├── PagCategorie.jsx<br>
+│       │           └── PagCategorie.module.css<br>
+│       └── vite.config.js<br>
+├── package.json<br>
+├── package-lock.json<br>
+├── README.md<br>
+└── tests<br>
+    ├── Admin<br>
+    │   ├── DELETE<br>
+    │   │   └── deleteAdmin.js<br>
+    │   ├── GET<br>
+    │   │   ├── getAdminAll.js<br>
+    │   │   └── getAdminID.js<br>
+    │   ├── POST<br>
+    │   │   └── postAdmin.js<br>
+    │   └── PUT<br>
+    │       └── putAdmin.js<br>
+    ├── app.js<br>
+    ├── Carrinho<br>
+    │   ├── DELETE<br>
+    │   │   └── deleteCarrinho.js<br>
+    │   ├── GET<br>
+    │   │   ├── carrinhoAll.js<br>
+    │   │   └── carrinhoID.js<br>
+    │   ├── POST<br>
+    │   │   └── postCarrinho.js<br>
+    │   └── PUT<br>
+    │       └── putCarrinho.js<br>
+    ├── Categoria<br>
+    │   ├── DELETE<br>
+    │   │   └── deleteCategoria.js<br>
+    │   ├── GET<br>
+    │   │   ├── getCategoriaAll.js<br>
+    │   │   └── getCategoriaID.js<br>
+    │   ├── POST<br>
+    │   │   └── postCategoria.js<br>
+    │   └── PUT<br>
+    │       └── putCategoria.js<br>
+    ├── Pagamento<br>
+    │   ├── DELETE<br>
+    │   │   └── deletePagamento.js<br>
+    │   ├── GET<br>
+    │   │   ├── getPagamentoAll.js<br>
+    │   │   └── getPagamentoID.js<br>
+    │   ├── POST<br>
+    │   │   └── postPagamento.js<br>
+    │   └── PUT<br>
+    │       └── putPagamento.js<br>
+    └── Produto<br>
+        ├── DELETE<br>
+        │   └── deleteProduto.js<br>
+        ├── GET<br>
+        │   ├── getProdutoAll.js<br>
+        │   └── getProdutoID.js<br>
+        ├── POST<br>
+        │   └── postProduto.js<br>
+        └── PUT<br>
+            └── putProduto.js<br>
 
