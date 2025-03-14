@@ -1,65 +1,76 @@
-const Produto = require("../model/ProdutoModel.js");
+const mongoose = require("mongoose");
+const Produto = require("../model/produtoModel.js");
+const Categoria = require("../model/categoriaModel.js");
 
-function verificarCategoria(categoria) {
-    try{
-        return typeof categoria === "string" && categoria.trim().length > 0;
-
-    }catch(error){
-        return error
-
-    }
+// Função para verificar se o nome é válido
+function verificarNome(nome) {
+    return typeof nome === "string" && nome.trim().length > 0;
 }
 
+// Função para verificar se a descrição é válida
+function verificarDescricao(descricao) {
+    return typeof descricao === "string" && descricao.trim().length > 0;
+}
+
+// Função para verificar se o valor é um número positivo
 function valorValido(valor) {
-    try{
-        return typeof valor === "number" && !isNaN(valor) && valor > 0;
-
-    }catch(error){
-        return error
-
-    }
+    return typeof valor === "number" && !isNaN(valor) && valor > 0;
 }
-
 
 const postProduto = async (req, res) => {
     try {
-
         const { categoria, tamanho, descricao, valor, nome } = req.body;
 
+        // Verifica se todos os campos obrigatórios estão preenchidos
         if (!categoria || !valor || !nome || !descricao || !tamanho) {
-            return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
+            return res.status(400).json({ message: "Todos os campos são obrigatórios." });
         }
 
-
-        const categoriasPermitidas = ["Cartão", "Pix", "Boleto"];
-        if (!categoriasPermitidas.includes(categoria)) {
-            return res.status(400).json({ message: 'Categoria deve ser válida' });
+        // Verifica se o ID da categoria é válido
+        if (!mongoose.Types.ObjectId.isValid(categoria)) {
+            return res.status(400).json({ message: "ID de categoria inválido." });
         }
 
-
-        if (!valorValido(valor)) {
-            return res.status(400).json({ message: 'Valor deve ser um número positivo.' });
+        // Busca a categoria no banco
+        const categoriaExiste = await Categoria.findById(categoria);
+        if (!categoriaExiste) {
+            return res.status(400).json({ message: "Categoria não encontrada." });
         }
 
+        // Verifica se o nome do produto é válido
+        if (!verificarNome(nome)) {
+            return res.status(400).json({ message: "Nome do produto deve ser preenchido." });
+        }
+
+        // Verifica se a descrição do produto é válida
         if (!verificarDescricao(descricao)) {
-            return res.status(400).json({ message: 'Descrição precisa ser preenchida.' });
-        }
-        
-        const tamanhoPermitidas = ["P", "M", "G", "GG", "XG"];
-        if (!tamanhoPermitidas.includes(tamanho)) {
-            return res.status(400).json({ message: 'Tamanho deve ser válido' });
+            return res.status(400).json({ message: "Descrição do produto deve ser preenchida." });
         }
 
+        // Verifica se o tamanho informado é válido
+        const tamanhosPermitidos = ["P", "M", "G", "GG", "XG"];
+        if (!tamanhosPermitidos.includes(tamanho)) {
+            return res.status(400).json({ message: "Tamanho inválido. Use P, M, G, GG ou XG." });
+        }
 
+        // Verifica se o valor é um número positivo
+        if (!valorValido(valor)) {
+            return res.status(400).json({ message: "Valor do produto deve ser um número positivo." });
+        }
+
+        // Criação do novo produto
         const newProduto = new Produto({ categoria, tamanho, descricao, valor, nome });
         await newProduto.save();
 
-        res.json({ message: "Novo Produto foi criado!", Produto: newProduto });
+        return res.status(201).json({ message: "Novo Produto foi criado!", produto: newProduto });
 
     } catch (error) {
-        res.status(500).json({ message: 'Produto não foi criado.', error: error.message });
+        console.error("Erro ao criar produto:", error);
+        return res.status(500).json({ message: "Erro interno no servidor.", error: error.message });
     }
 };
+
+
 
 const getAllProdutos = async (req, res) => {
     try {
@@ -97,23 +108,36 @@ const deleteProduto = async (req, res) => {
 
 const putProduto = async (req, res) => {
     try {
-        const { id } = req.params;
         const { categoria, tamanho, descricao, valor, nome } = req.body;
 
         if (!categoria || !valor || !nome || !descricao || !tamanho) {
-            return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
+            return res.status(400).json({ message: "Todos os campos são obrigatórios." });
         }
 
-        if (!verificarCategoria(categoria)) {
-            return res.status(400).json({ message: 'Categoria deve ser válida.' });
+        if (!mongoose.Types.ObjectId.isValid(categoria)) {
+            return res.status(400).json({ message: "ID de categoria inválido." });
         }
 
-        if (!valorValido(valor)) {
-            return res.status(400).json({ message: 'Valor deve ser um número positivo.' });
+        const categoriaExiste = await Categoria.findById(categoria);
+        if (!categoriaExiste) {
+            return res.status(400).json({ message: "Categoria não encontrada." });
+        }
+
+        if (!verificarNome(nome)) {
+            return res.status(400).json({ message: "Nome do produto deve ser preenchido." });
         }
 
         if (!verificarDescricao(descricao)) {
-            return res.status(400).json({ message: 'Descrição precisa ser preenchida.' });
+            return res.status(400).json({ message: "Descrição do produto deve ser preenchida." });
+        }
+
+        const tamanhosPermitidos = ["P", "M", "G", "GG", "XG"];
+        if (!tamanhosPermitidos.includes(tamanho)) {
+            return res.status(400).json({ message: "Tamanho inválido. Use P, M, G, GG ou XG." });
+        }
+
+        if (!valorValido(valor)) {
+            return res.status(400).json({ message: "Valor do produto deve ser um número positivo." });
         }
 
         const produtoAtualizado = await Produto.findByIdAndUpdate(id, { categoria, tamanho, descricao, valor, nome }, { new: true });
@@ -125,8 +149,10 @@ const putProduto = async (req, res) => {
         res.status(200).json({ message: 'Produto atualizado com sucesso!', Produto: produtoAtualizado });
 
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao atualizar produto.', error: error.message });
+        console.error("Erro ao criar produto:", error);
+        return res.status(500).json({ message: "Erro interno no servidor.", error: error.message });
     }
+
 };
 
 module.exports = { getAllProdutos, getProduto, postProduto, putProduto, deleteProduto };

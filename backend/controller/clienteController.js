@@ -1,15 +1,28 @@
 const Cliente = require("../model/clienteModel");
 
 function verificarCPFValido(cpf) {
-    try{
-        return typeof cpf === "string" && cpf.length === 11 && /^\d+$/.test(cpf);
-
-    }catch(error){
-        return error
-
+    try {
+        // Verifica se o tipo é número
+        if (typeof cpf !== "number") {
+            return false;
+        }
+    
+        // Converte o número para string e verifica o comprimento
+        const cpfString = cpf.toString();
+        if (cpfString.length !== 11) {
+            return false;
+        }
+    
+        // Verifica se a string contém apenas dígitos
+        if (!/^\d+$/.test(cpfString)) {
+            return false;
+        }
+    
+        return true; // CPF válido
+    } catch (error) {
+        return error; // Retorna o erro, caso ocorra
     }
 }
-
 function validarEmail(email) {
     try{
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -11,65 +11,34 @@ function verificarTipoValido(tipo) {
   }
 }
 
-function verificarDescricaoValida(descricao) {
-  try{
-    return typeof descricao === "string" && descricao.trim().length > 0;
-
-  }catch(error){
-      return error
-
-  }
-}
-
-
-function validarCategoria(req, res) {
-  const { tipo, descricao,categoria } = req.body;
-
-  if (!tipo || !descricao) {
-    return { status: 400, message: "Todos os campos são obrigatórios." };
-  }
-
-  if (!verificarTipoValido(tipo)) {
-    return {
-      status: 400,
-      message: "Tipo deve ser uma string e não pode estar vazio.",
-    };
-  }
-
-  if (!verificarDescricaoValida(descricao)) {
-    return { status: 400, message: "Descrição não pode estar vazia." };
-  }
-
-  const categoriasPermitidas = ["Camisas", "Saias", "Calças", "Sutiãs", "Calcinha", "Cropped", "meias"];
-  if (!categoriasPermitidas.includes(categoria)) {
-      return res.status(400).json({ message: 'Categoria inválida' });
-  }
-  return null; 
-}
-
-
 const postCategoria = async (req, res) => {
   try {
-    const erro = validarCategoria(req, res);
-    if (erro) return res.status(erro.status).json({ message: erro.message });
+    const { tipo } = req.body;
 
-    const { tipo, descricao } = req.body;
-    const newCategoria = new Categoria({ tipo, descricao });
+
+    if (!tipo || typeof tipo !== 'string') {
+      return res.status(400).json({ message: 'O campo "tipo" é obrigatório e deve ser uma string.' });
+    }
+
+    const valoresPermitidos = Categoria.schema.path('tipo').enumValues;
+
+    if (!valoresPermitidos.includes(tipo)) {
+      valoresPermitidos.push(tipo);
+
+      Categoria.schema.path('tipo').enum(...valoresPermitidos);
+    }
+
+    const newCategoria = new Categoria({ tipo });
     await newCategoria.save();
 
-    res.json({
-      message: "Nova categoria foi criada!",
-      Categoria: newCategoria,
-    });
+    res.status(201).json({ message: "Nova categoria criada com sucesso!", categoria: newCategoria });
   } catch (error) {
-    res.status(500).json({
-      message: "Categoria não foi criada.",
-      error: error.message,
-    });
+    console.error("Erro ao criar categoria:", error); 
+    res.status(500).json({ message: 'Erro ao criar categoria.', error: error.message });
   }
 };
 
-// Listar todas as categorias
+
 const categoriaAllget = async (req, res) => {
   try {
     const categorias = await Categoria.find();
@@ -96,62 +65,53 @@ const getCategoria = async (req, res) => {
 
 }
 
-// Excluir categoria
+
 const deleteCategoria = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: "ID inválido." });
-    }
-
-    const categoria = await Categoria.findById(id);
-    if (!categoria) {
-      return res.status(404).json({ message: "Categoria não encontrada." });
-    }
-
-    await Categoria.deleteOne({ _id: id });
-
-    res.json({
-      message: `Categoria com ID ${id} foi deletada com sucesso!`,
-    });
+      const { id } = req.params;
+      await Categoria.deleteOne({ _id: id });
+      res.json({ message: 'Categoria foi deletada com sucesso!' });
   } catch (error) {
-    res.status(500).json({
-      message: "Não foi possível deletar a categoria.",
-      error: error.message,
-    });
+      res.status(500).json({ message: 'Não foi possível deletar a Categoria.' });
   }
 };
 
-// Atualizar categoria
+
 const putCategoria = async (req, res) => {
   try {
-    const { id } = req.params;
-    const erro = validarCategoria(req, res);
-    if (erro) return res.status(erro.status).json({ message: erro.message });
+    const { tipo } = req.body;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: "ID inválido." });
+    if (!tipo ) {
+        return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
     }
-
-    let categoriaAtualizada = await Categoria.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
-
-    if (!categoriaAtualizada) {
-      return res.status(404).json({ message: "Categoria não encontrada." });
-    }
-
-    res.status(200).json({
-      message: "Categoria atualizada com sucesso!",
-      Categoria: categoriaAtualizada,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Não foi possível atualizar a categoria.",
-      error: error.message,
-    });
-  }
+    const postCategoria = async (req, res) => {
+      try {
+        const { tipo } = req.body;
+    
+        if (!tipo) {
+          return res.status(400).json({ message: 'O campo "tipo" é obrigatório.' });
+        }
+    
+        // Verifica se o valor de "tipo" já está no enum
+        const valoresPermitidos = ["Camisas", "Saias", "Calças", "Sutiãs", "Calcinhas", "Cropped", "Meias"];
+        if (!valoresPermitidos.includes(tipo)) {
+          // Adiciona o novo valor ao enum
+          valoresPermitidos.push(tipo);
+          categoriaSchema.path('tipo').enum(valoresPermitidos);
+        }
+    
+        // Cria a nova categoria
+        const newCategoria = new Categoria({ tipo });
+        await newCategoria.save();
+    
+        res.status(201).json({ message: "Nova categoria criada com sucesso!", categoria: newCategoria });
+      } catch (error) {
+        res.status(500).json({ message: 'Erro ao criar categoria.', error: error.message });
+      }
+    };
+} catch (error) {
+    res.status(500).json({ message: 'Categoria não foi criada.', error: error.message });
+}
 };
 
 module.exports = {categoriaAllget, getCategoria, postCategoria, putCategoria, deleteCategoria};

@@ -11,9 +11,9 @@ function verificarQuantidadValida(qnt) {
     }
 }
 
-async function carrinhoExistente(id) {
+async function carrinhoExistente(cart) {
     try{
-        const carrinho = await carrinho.findById(id);
+        const carrinho = await carrinho.findById(cart.id);
         return !!carrinho;
 
     } catch(error){

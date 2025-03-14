@@ -2,12 +2,26 @@ const Administrador = require("../model/adminModel.js");
 
 
 function verificarCPFValido(cpf) {
-    try{
-        return typeof cpf === "string" && cpf.length === 11 && /^\d+$/.test(cpf);
-
-    }catch(error){
-        return error
-
+    try {
+        // Verifica se o tipo é número
+        if (typeof cpf !== "number") {
+            return false;
+        }
+    
+        // Converte o número para string e verifica o comprimento
+        const cpfString = cpf.toString();
+        if (cpfString.length !== 11) {
+            return false;
+        }
+    
+        // Verifica se a string contém apenas dígitos
+        if (!/^\d+$/.test(cpfString)) {
+            return false;
+        }
+    
+        return true; // CPF válido
+    } catch (error) {
+        return error; // Retorna o erro, caso ocorra
     }
 }
 
@@ -96,32 +110,48 @@ const deleteAdministrador = async (req, res) => {
 
 const putAdministrador = async (req, res) => {
     try {
+        const { id } = req.params; // Extrai o ID da URL
         const { nome, cpf, senha, email } = req.body;
 
+        // Verifica se todos os campos obrigatórios foram fornecidos
         if (!nome || !cpf || !senha || !email) {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
+        // Valida o CPF
         if (!verificarCPFValido(cpf)) {
             return res.status(400).json({ message: 'CPF deve conter 11 dígitos numéricos' });
         }
 
+        // Valida o e-mail
         if (!validarEmail(email)) {
             return res.status(400).json({ message: 'E-mail inválido' });
         }
 
+        // Valida a senha
         if (!validarSenha(senha)) {
             return res.status(400).json({ message: 'A senha deve ter entre 6 e 10 caracteres, incluindo letras e números' });
         }
 
+        // Atualiza o administrador
+        const adminAtualizado = await Administrador.findByIdAndUpdate(
+            id,
+            { nome, cpf, senha, email },
+            { new: true } // Retorna o documento atualizado
+        );
 
-        const adminAtualizado = await Administrador.findByIdAndUpdate(id, { nome, cpf, senha, email }, { new: true });
+        // Verifica se o administrador foi encontrado e atualizado
+        if (!adminAtualizado) {
+            return res.status(404).json({ message: 'Administrador não encontrado' });
+        }
 
-        res.status(200).json({ message: 'Administrador atualizado com sucesso!', Administrador: adminAtualizado });
+        // Retorna a resposta de sucesso
+        res.status(200).json({ message: 'Administrador atualizado com sucesso!', administrador: adminAtualizado });
 
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao atualizar Administrador.' });
+        console.error('Erro ao atualizar administrador:', error); // Log do erro para depuração
+        res.status(500).json({ message: 'Erro ao atualizar administrador.' });
     }
-}
+};
 
 module.exports = { getAdministrador, getAllAdministrador, deleteAdministrador, putAdministrador, postAdministrador };

@@ -11,6 +11,7 @@ const categoriaRoute = require('./route/categoriaRoute');
 const adminRoute = require('./route/adminRoute');
 const loginRoute = require('./route/loginRoute');
 const PagamentoRoute = require('./route/pagamentoRoute');
+const pedidosRoute = require('./route/pedidosRoute');
 
 
 app.use(bodyParser.json()); // Para ler o corpo das requisições como JSON
@@ -22,6 +23,7 @@ app.use("/api",carrinhoRoute);
 app.use("/api",adminRoute);
 app.use("/api",loginRoute);
 app.use("/api", categoriaRoute);
+app.use("/api", pedidosRoute);
 
 const port = 3000;
 app.listen(port, () => {

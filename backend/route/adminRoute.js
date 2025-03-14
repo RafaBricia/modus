@@ -1,12 +1,13 @@
+
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controller/adminController.js');
-
-
-router.get('/pagamento', adminController.getAllAdministrador);
-router.post('/pagamento', adminController.postAdministrador);
-router.get('/pagamento/:id',adminController.getAdministrador);
-router.put('/pagamento/:id', adminController.putAdministrador);
-router.delete('/pagamento/:id',adminController.deleteAdministrador);
+const withAuth = require('../controller/middleware/middlewareAuth.js');
+//add withAuth em tudo
+router.get('/admin', adminController.getAllAdministrador);
+router.post('/admin',  adminController.postAdministrador);
+router.get('/admin/:id',  adminController.getAdministrador);
+router.put('/admin/:id',  adminController.putAdministrador);
+router.delete('/admin/:id',  adminController.deleteAdministrador);
 
 module.exports = router;

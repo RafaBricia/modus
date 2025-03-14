@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const pagamento = new Schema({
+const pagamentoSchema = new Schema({
 
   metodo: { 
     type: String, 

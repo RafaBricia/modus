@@ -1,13 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const produto = new Schema({
-
+const produtoSchema = new Schema({
     categoria: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'categoria',
-        required: true,
-        enum: [ "Camisas", "Saias", "Calças", "Sutiãs", "Calcinha", "Cropped", "meias" ]
+        ref: 'Categoria', 
+        required: true
     },
 
     nome: { 
@@ -18,7 +16,7 @@ const produto = new Schema({
     tamanho: {
         type: String, 
         required: true,
-        enum: [ "P", "M", "G", "GG", "XG" ]
+        enum: ["P", "M", "G", "GG", "XG"]
     },
 
     valor: {
@@ -26,13 +24,12 @@ const produto = new Schema({
         required: true
     },
 
-    descrição: {
+    descricao: { 
         type: String, 
         required: true
     }
-    
-    
-
 });
+
+
 
 module.exports = mongoose.model("produto", produtoSchema);
