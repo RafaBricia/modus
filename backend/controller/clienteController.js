@@ -2,25 +2,22 @@ const Cliente = require("../model/clienteModel");
 
 function verificarCPFValido(cpf) {
     try {
-        // Verifica se o tipo é número
         if (typeof cpf !== "number") {
             return false;
         }
     
-        // Converte o número para string e verifica o comprimento
         const cpfString = cpf.toString();
         if (cpfString.length !== 11) {
             return false;
         }
     
-        // Verifica se a string contém apenas dígitos
         if (!/^\d+$/.test(cpfString)) {
             return false;
         }
     
-        return true; // CPF válido
+        return true; 
     } catch (error) {
-        return error; // Retorna o erro, caso ocorra
+        return error; 
     }
 }
 function validarEmail(email) {
@@ -107,6 +104,7 @@ const deleteCliente = async (req, res) => {
         res.status(500).json({ message: 'Erro ao deletar Cliente.' });
     }
 };
+
 
 const putCliente = async (req, res) => {
     try {

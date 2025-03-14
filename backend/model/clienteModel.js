@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
 
@@ -27,7 +27,6 @@ const clienteSchema = new Schema({
   }
 });
 
-
 clienteSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('senha')) {
     try {
@@ -42,7 +41,7 @@ clienteSchema.pre('save', async function(next) {
   }
 });
 
-clienteSchema.methods.isCorrectPassword =  function(password, callback) {
+clienteSchema.methods.isCorrectPassword = function(password, callback) {
   bcrypt.compare(password, this.senha, function(err, same) {
     if (err) {
       callback(err);
@@ -50,6 +49,6 @@ clienteSchema.methods.isCorrectPassword =  function(password, callback) {
       callback(err, same);
     }
   });
-}
+};
 
-export default mongoose.model("Cliente", clienteSchema);
+module.exports = mongoose.model("Cliente", clienteSchema);

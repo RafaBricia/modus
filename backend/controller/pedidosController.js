@@ -3,24 +3,15 @@ const Cliente = require('../model/clienteModel.js')
 
 
 function verificarQuantidadValida(qnt) {
-
-    try{
-        return Number.isInteger(qnt) && qnt > 0;
-
-    } catch(error){
-        return error
-
-    }
+    return Number.isInteger(qnt) && qnt > 0;
 }
 
-
 async function ClienteExistente(client) {
-    try{
-        const cliente = await Cliente.findById(client.id);
+    try {
+        const cliente = await Cliente.findById(client); // Correção aqui
         return !!cliente;
-
-    } catch(error){
-        return error 
+    } catch (error) {
+        return false; // Correção para evitar erro como retorno
     }
 }
 
@@ -29,23 +20,21 @@ async function ClienteExistente(client) {
 const postPedido = async (req, res) => {
     try {
 
-        const { quantidade, id, cliente } = req.body;
+        const { quantidade, cliente } = req.body;
 
-        if (!quantidade || !id || !cliente) {
+        if (!quantidade || !cliente) {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-
-        if (!verificarQuantidadValida(cliente)) {
+        if (!verificarQuantidadValida(quantidade)) { 
             return res.status(400).json({ message: 'Quantidade deve ser um número positivo.' });
         }
 
-        if (!ClienteExistente(cliente)) {
-            return res.status(400).json({ message: 'Cliente precisa ser preenchido.' });
+        if (!(await ClienteExistente(cliente))) {
+            return res.status(400).json({ message: 'Cliente não encontrado.' });
         }
-        
 
-        const newPedido = new Pedido({ quantidade, id, cliente });
+        const newPedido = new Pedido({ quantidade, cliente });
         await newPedido.save();
 
         res.json({ message: "Novo Pedido foi criado!", Pedido: newPedido });
@@ -86,41 +75,34 @@ const deletePedido = async (req, res) => {
         res.status(500).json({ message: 'Não foi possível deletar o pedido.' });
     }
 };
-
 const putPedido = async (req, res) => {
-
     try {
-
         const { id } = req.params;
-        const { quantidade,cliente } = req.body;
+        const { quantidade, cliente } = req.body;
 
         if (!quantidade || !id || !cliente) {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-
-        if (!verificarQuantidadValida(cliente)) {
+        if (!verificarQuantidadValida(quantidade)) { 
             return res.status(400).json({ message: 'Quantidade deve ser um número positivo.' });
         }
 
-        if (!ClienteExistente(cliente)) {
-            return res.status(400).json({ message: 'Cliente precisa ser preenchido.' });
+        if (!(await ClienteExistente(cliente))) {
+            return res.status(400).json({ message: 'Cliente não encontrado.' });
         }
-        
 
         let PedidoAtualizado = await Pedido.findByIdAndUpdate(
             id,
             { quantidade, cliente },
             { new: true }
         );
-    
+
         res.status(200).json({ message: 'Pedido atualizado com sucesso!', Pedido: PedidoAtualizado });
 
     } catch (error) {
-        res.status(500).json({ message: 'Pedido não foi criado.', error: error.message });
+        res.status(500).json({ message: 'Erro ao atualizar pedido.', error: error.message });
     }
-
-
 };
 
 

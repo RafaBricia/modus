@@ -27,7 +27,12 @@ const produtoSchema = new Schema({
     descricao: { 
         type: String, 
         required: true
-    }
+    },
+
+    quantidade: { 
+        type: Number, 
+        required: true
+    }    
 });
 
 

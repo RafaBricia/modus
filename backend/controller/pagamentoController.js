@@ -103,12 +103,11 @@ const deletePagamento = async (req, res) => {
 }
 
 const putPagamento = async (req, res) => {
-
-    try{
+    try {
         const { id } = req.params;
-        const { metodo, valor, carrinho, status } = req.body;
+        const { metodo, valor, status } = req.body;
 
-        if (!metodo || !valor || !carrinho || !status) {
+        if (!metodo || !valor || !status) {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
@@ -126,23 +125,24 @@ const putPagamento = async (req, res) => {
             return res.status(400).json({ message: 'Valor precisa ser válido' });
         }
 
-        if (!(await carrinhoExistente(carrinho))) {
-            return res.status(400).json({ message: 'Carrinho precisa existir.' });
-        }
-
-        const pagamentoAtualizado = await Pagamento.findByIdAndUpdate(id, { metodo, valor, carrinho, status }, { new: true });
-
-        if (!pagamentoAtualizado) {
+        // Verifica se o pagamento existe
+        const pagamentoExistente = await Pagamento.findById(id);
+        if (!pagamentoExistente) {
             return res.status(404).json({ message: 'Pagamento não encontrado.' });
         }
 
-        res.status(200).json({ message: 'Pagamento atualizado com sucesso!', Pagamento: pagamentoAtualizado });
+        // Garante que `carrinho` não seja modificado (mantendo a unicidade)
+        const pagamentoAtualizado = await Pagamento.findByIdAndUpdate(
+            id,
+            { metodo, valor, status }, // Mantém o `carrinho` inalterado
+            { new: true }
+        );
 
-    } catch(error){
-        res.status(500).json({ message: 'Erro ao deletar editar pagamento.', error: error.message });
+        res.status(200).json({ message: 'Pagamento atualizado com sucesso!', pagamento: pagamentoAtualizado });
 
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao editar pagamento.', error: error.message });
     }
-
-}
+};
 
 module.exports = { getAllPagamento, getPagamento, postPagamento, putPagamento, deletePagamento };

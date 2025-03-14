@@ -17,7 +17,8 @@ const pagamentoSchema = new Schema({
   carrinho: { 
     type: mongoose.Schema.Types.ObjectId, 
     ref:"carrinho", 
-    required: true 
+    required: true ,
+    unique: true
   },
 
   status: { 

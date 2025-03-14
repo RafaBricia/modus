@@ -1,10 +1,10 @@
 const Carrinho = require("../model/carrinhoModel.js");
 const Produto = require("../model/produtoModel.js");
 
-function verificarQuantidadValida(qnt,pedido) {
+function verificarQuantidadValida(qnt) {
 
     try{
-        return Number.isInteger(qnt) && qnt > 0 && (pedido.quantidade > qnt);
+        return Number.isInteger(qnt) && qnt > 0;
 
     } catch(error){
         return error
@@ -44,7 +44,7 @@ const postCarrinho = async (req, res) => {
             return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
         }
 
-        if (!verificarQuantidadValida(quantidade, produto)) {
+        if (!verificarQuantidadValida(quantidade)) {
             return res.status(400).json({ message: 'Quantidade deve ser um valor positivo' });
         }
 
@@ -56,7 +56,7 @@ const postCarrinho = async (req, res) => {
             return res.status(400).json({ message: 'Produto precisa existir.' });
         }
 
-        const newCarrinho = new Carrinho({ quantidade, valor, produto });
+        const newCarrinho = new Carrinho({ quantidade, valor, produto});
         await newCarrinho.save();
 
         res.json({ message: "Novo Carrinho foi criado!", Carrinho: newCarrinho });
