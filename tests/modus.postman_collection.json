@@ -1,0 +1,1462 @@
+{
+	"info": {
+		"_postman_id": "6ecf23bb-ed6e-41bc-b2e5-d8ec01e503bf",
+		"name": "modus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38935971"
+	},
+	"item": [
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "adicionando admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"tester\",\n  \"cpf\": 12345678901,\n  \"senha\": \"teste123\",\n  \"email\": \"tester@example.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deletando um admin",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/admin/67d39f8ac10809bb4cbccdf9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"67d39f8ac10809bb4cbccdf9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editando admin",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"test\",\n  \"cpf\": 12345678901,\n  \"senha\": \"teste123\",\n  \"email\": \"test@example.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/admin/67d39cd2f1abf2e1a2d969a9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"67d39cd2f1abf2e1a2d969a9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "verificando admin",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verificar admin especifico",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/admin/67d39cd2f1abf2e1a2d969a9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"67d39cd2f1abf2e1a2d969a9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "LOGIN",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "fazer login admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"senha\": \"teste123\",\n  \"email\": \"tester@example.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/loginAdmin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"loginAdmin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "fazer login cliente",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"senha\": \"teste123\",\n  \"email\": \"miguel@example.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/loginCliente",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"loginCliente"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CLIENTE",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "adicionando cliente",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"fulano1\",\n  \"cpf\": 15823737912,\n  \"senha\": \"teste123\",\n  \"email\": \"fulano1@example.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/cliente",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"cliente"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deletando um cliente",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/cliente/67d4a38bbbfd248850ea1cb0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"cliente",
+										"67d4a38bbbfd248850ea1cb0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editando cliente",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nome\": \"Marcone\",\n  \"cpf\": 16526737912,\n  \"senha\": \"teste123\",\n  \"email\": \"marcone@example.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/cliente/67d4a2c0fab085515889e63d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"cliente",
+										"67d4a2c0fab085515889e63d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "verificando cliente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/cliente",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"cliente"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verificar cliente especifico",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/cliente/67d4a2c0fab085515889e63d",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"cliente",
+										"67d4a2c0fab085515889e63d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CATEGORIA",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "adicionando categoria",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haWNvbkBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk1NjY4NSwiZXhwIjoxNzQxOTYwMjg1fQ.n1eIse_Xxj6EIX5z0ePi9qXT3vLb-ap62rVQZG91ANs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"tipo\": \"Sapatos\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/categoria",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"categoria"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deletando uma categoria",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haWNvbkBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk1NjY4NSwiZXhwIjoxNzQxOTYwMjg1fQ.n1eIse_Xxj6EIX5z0ePi9qXT3vLb-ap62rVQZG91ANs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/categoria/67d428fe4aacb456f43e357f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"categoria",
+										"67d428fe4aacb456f43e357f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editando categoria",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1haWNvbkBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk1NjY4NSwiZXhwIjoxNzQxOTYwMjg1fQ.n1eIse_Xxj6EIX5z0ePi9qXT3vLb-ap62rVQZG91ANs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"tipo\": \"Shorts e bottons\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/admin/67d428fe4aacb456f43e357f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"67d428fe4aacb456f43e357f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "verificando categoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/categoria",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"categoria"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verificar categoria especifica",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/categoria/67d428fe4aacb456f43e357f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"categoria",
+										"67d428fe4aacb456f43e357f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PRODUTO",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "adicionando produto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"categoria\": \"67d42c4d5e4aab7c337b6eb7\",\n  \"nome\": \"Camiseta preta básica\",\n  \"tamanho\": \"M\",\n  \"valor\": 65.99,\n  \"descricao\": \"Camiseta de tricô, confortável e estilosa.\",\n  \"quantidade\": 2\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/produto",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"produto"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deletando um produto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/produto/67d4ab4a5451e4ed273b7f9b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"produto",
+										"67d4ab4a5451e4ed273b7f9b"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editando produto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4Nzk5OSwiZXhwIjoxNzQxOTkxNTk5fQ.NBtJccsx2DhmZNgin3aLVIjxanTPUIvkjTi0YuakfaM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"categoria\": \"67d42c4d5e4aab7c337b6eb7\",\n  \"nome\": \"Camiseta preta básica\",\n  \"tamanho\": \"M\",\n  \"valor\": 689.99,\n  \"descricao\": \"Camiseta de algodão, confortável e estilosa.\",\n  \"quantidade\": 5\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/produto/67d4ab4a5451e4ed273b7f9b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"produto",
+										"67d4ab4a5451e4ed273b7f9b"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "verificando produto",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/produto",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"produto"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verificar produto especifico",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/produto/67d4ab4a5451e4ed273b7f9b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"produto",
+										"67d4ab4a5451e4ed273b7f9b"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PEDIDO",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "adicionando produto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZ3VlbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4ODUwNiwiZXhwIjoxNzQxOTkyMTA2fQ.l5P7dcBMeNCo2wh7uGMTexWm1Pq3xnN5OwunYGyPsVI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"cliente\": \"67d4a281fab085515889e638\",\n  \"quantidade\": 89\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/pedido",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pedido"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deletando um cliente",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZ3VlbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4ODUwNiwiZXhwIjoxNzQxOTkyMTA2fQ.l5P7dcBMeNCo2wh7uGMTexWm1Pq3xnN5OwunYGyPsVI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/pedido/67d4a5c8a69e50659ba4d8ae",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pedido",
+										"67d4a5c8a69e50659ba4d8ae"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editando produto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZ3VlbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4ODUwNiwiZXhwIjoxNzQxOTkyMTA2fQ.l5P7dcBMeNCo2wh7uGMTexWm1Pq3xnN5OwunYGyPsVI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"cliente\": \"67d4a281fab085515889e638\",\n  \"quantidade\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/pedido/67d4a45331501f5061c79662",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pedido",
+										"67d4a45331501f5061c79662"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "verificando produto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZ3VlbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4ODUwNiwiZXhwIjoxNzQxOTkyMTA2fQ.l5P7dcBMeNCo2wh7uGMTexWm1Pq3xnN5OwunYGyPsVI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/pedido",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pedido"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verificar produto especifico",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pZ3VlbEBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4ODUwNiwiZXhwIjoxNzQxOTkyMTA2fQ.l5P7dcBMeNCo2wh7uGMTexWm1Pq3xnN5OwunYGyPsVI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/pedido/67d4a45331501f5061c79662",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pedido",
+										"67d4a45331501f5061c79662"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CARRINHO",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "adicionando carrinho",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"quantidade\": 2,\n  \"valor\": 750.00,\n  \"produto\": \"67d4ab4a5451e4ed273b7f9b\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/carrinho",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"carrinho"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deletando um carrinho",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/carrinho/67d4ab4a5451e4ed273b7f9b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"carrinho",
+										"67d4ab4a5451e4ed273b7f9b"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editando pagamento",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"quantidade\": 5,\n  \"valor\": 750.00,\n  \"produto\": \"67d4ab4a5451e4ed273b7f9b\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/carrinho/67d4ac30d8ad3d08f6f1e99e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"carrinho",
+										"67d4ac30d8ad3d08f6f1e99e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "verificando carrinho",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/carrinho",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"carrinho"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verificar carrinho especifico",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/carrinho/67d4ac30d8ad3d08f6f1e99e",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"carrinho",
+										"67d4ac30d8ad3d08f6f1e99e"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PAGAMENTO",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "adicionando pagamento",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"disabled": true
+									},
+									{
+										"key": "User-Agent",
+										"value": "Thunder Client (https://www.thunderclient.com)",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"metodo\": \"Pix\",\n  \"valor\": 150.75,\n  \"carrinho\": \"67d4ac15d8ad3d08f6f1e99c\", \n  \"status\": \"Não Efetuado\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/pagamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pagamento"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deletando um pagamento",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/pagamento/67d4acf0d8ad3d08f6f1e9a5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pagamento",
+										"67d4acf0d8ad3d08f6f1e9a5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editando carrinho",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"metodo\": \"Cartão\",\n  \"valor\": 150.75,\n  \"carrinho\": \"67d4ac15d8ad3d08f6f1e99c\", \n  \"status\": \"Não Efetuado\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/pagamento/67d4ad4f4318ea56844527ba",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pagamento",
+										"67d4ad4f4318ea56844527ba"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "verificando pagamento",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/pagamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pagamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verificar pagamento especifico",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlckBleGFtcGxlLmNvbSIsImlhdCI6MTc0MTk4OTg2MywiZXhwIjoxNzQxOTkzNDYzfQ.A1yDWMg9_acNa1jEhMUoxUF1lLBb--FoXvzGzR7oeSg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/pagamento/67d4ad4f4318ea56844527ba",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"pagamento",
+										"67d4ad4f4318ea56844527ba"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
