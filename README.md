@@ -91,7 +91,7 @@ Clique <a href="https://github.com/users/RafaBricia/projects/3">aqui</a> para ve
 # Regras de Autenticação e Autorização
 
 ## 📌 Visão Geral
-Este documento define como são as regras de autenticação e autorização para cada entidade no sistema da loja. MMas, para facilitar os testes locais, deixamos Administrador e Cliente sem autenticação.
+Este documento define como são as regras de autenticação e autorização para cada entidade no sistema da loja. Mas, para facilitar os testes locais, deixamos Administrador e Cliente sem autenticação.
 
 ## 🔒 Regras de Acesso
 
