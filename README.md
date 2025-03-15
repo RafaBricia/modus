@@ -49,6 +49,12 @@ O Modus tem como propósito permitir a navegação e compra de roupas de forma i
   <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="MongoDB" width="40" height="40"/>
   </a>
+
+  <!-- Figma -->
+  <a href="https://www.figma.com/design/h9sw9gfp0emLTb0eYcmw5q/projeto-Modus?node-id=1-3&t=QIl3OY8Imi4ZyR9H-0" target="_blank" rel="noreferrer">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" width="40" height="40"/>
+  </a>
+
 </p>
 
 </br>
@@ -80,13 +86,12 @@ git clone https://github.com/endereçoDoSeuRepositório.git
 </br>
 
 
-## Designer - FIGMA
+## 🎨 Designer - Figma  
+🔗 [Clique aqui](https://www.figma.com/design/h9sw9gfp0emLTb0eYcmw5q/projeto-Modus?node-id=1-3&t=QIl3OY8Imi4ZyR9H-0) para visualizar o design do projeto no **Figma**.  
 
-Clique <a href="https://www.figma.com/design/h9sw9gfp0emLTb0eYcmw5q/projeto-Modus?node-id=1-3&t=QIl3OY8Imi4ZyR9H-0">aqui</a> para ver o design no figma
+## 📌 Gerenciamento de Tarefas  
+🛠️ Acompanhe o progresso do projeto no **GitHub Projects**: [Clique aqui](https://github.com/users/RafaBricia/projects/3).  
 
-## Gerenciamento de tarefas
-
-Clique <a href="https://github.com/users/RafaBricia/projects/3">aqui</a> para ver o gerenciamento de tarefas
 
 # Regras de Autenticação e Autorização
 
