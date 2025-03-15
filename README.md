@@ -88,6 +88,24 @@ Clique <a href="https://www.figma.com/design/h9sw9gfp0emLTb0eYcmw5q/projeto-Modu
 
 Clique <a href="https://github.com/users/RafaBricia/projects/3">aqui</a> para ver o gerenciamento de tarefas
 
+# Regras de Autenticação e Autorização
+
+## 📌 Visão Geral
+Este documento define como são as regras de autenticação e autorização para cada entidade no sistema da loja. MMas, para facilitar os testes locais, deixamos Administrador e Cliente sem autenticação.
+
+## 🔒 Regras de Acesso
+
+| Entidade       | Quem Pode Acessar?          | Ações Permitidas |
+|---------------|----------------------|------------------|
+| **Cliente** | Cliente autenticado | Criar conta, editar perfil, visualizar suas informações |
+| **Administrador** | Administrador autenticado | Gerenciar clientes, produtos, pedidos e pagamentos |
+| **Produto** | Administrador autenticado | Criar, editar e excluir produtos |
+| **Categoria** | Administrador autenticado | Criar, editar e excluir categorias |
+| **Pagamento** | Cliente autenticado | Criar e visualizar seus pagamentos |
+| **Carrinho** | Cliente autenticado | Adicionar produtos e visualizar seu carrinho |
+| **Pedido** | Cliente autenticado | Criar pedidos e visualizar os próprios pedidos |
+
+
 ## Direcionamento de pastas
 
 ├── backend<br>

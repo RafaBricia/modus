@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const adminController = require('../controller/adminController.js');
 const withAuth = require('../controller/middleware/middlewareAuth.js');
-//add withAuth em tudo
+//add withAuth em tudo na fase 2, deixar sem para facilitar os testes
+
 router.get('/admin', adminController.getAllAdministrador);
 router.post('/admin',  adminController.postAdministrador);
 router.get('/admin/:id',  adminController.getAdministrador);
