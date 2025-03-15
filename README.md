@@ -18,7 +18,7 @@ O Modus tem como propósito permitir a navegação e compra de roupas de forma i
 
 📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/frontend/projetomodus">/frontend →</a> Interface do usuário construída com React </br>
 📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/backend">/backend →</a> API e lógica de negócios usando Node.js </br>
-📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/backend/db">/database → Configuração do MongoDB para armazenamento de dados </br>
+📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/backend/db">/database → </a> Configuração do MongoDB para armazenamento de dados </br>
 📂 <a href="https://github.com/RafaBricia/modus/tree/desenvolvimento/tests">/tests →</a> 
 
 
@@ -89,8 +89,12 @@ git clone https://github.com/endereçoDoSeuRepositório.git
 ## 🎨 Designer - Figma  
 🔗 [Clique aqui](https://www.figma.com/design/h9sw9gfp0emLTb0eYcmw5q/projeto-Modus?node-id=1-3&t=QIl3OY8Imi4ZyR9H-0) para visualizar o design do projeto no **Figma**.  
 
+</br>
+
 ## 📌 Gerenciamento de Tarefas  
 🛠️ Acompanhe o progresso do projeto no **GitHub Projects**: [Clique aqui](https://github.com/users/RafaBricia/projects/3).  
+
+</br>
 
 
 # Regras de Autenticação e Autorização
