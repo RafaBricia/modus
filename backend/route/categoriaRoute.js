@@ -4,9 +4,9 @@ const { categoriaAllget, postCategoria, putCategoria, deleteCategoria } = requir
 const withAuth = require('../controller/middleware/middlewareAuth.js');
 
 router.get('/categoria', categoriaAllget);
-router.post('/categoria', withAuth, postCategoria);
+router.post('/categoria',  postCategoria);
 router.get('/categoria/:id', categoriaAllget);
-router.put('/categoria/:id', withAuth, putCategoria);
-router.delete('/categoria/:id',withAuth, deleteCategoria);
+router.put('/categoria/:id',  putCategoria);
+router.delete('/categoria/:id', deleteCategoria);
 
 module.exports = router;

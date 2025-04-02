@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const db = require("./db/database.js");
-
+const cors = require('cors')
 
 const clienteRoute = require("./route/clienteRoute.js");
 const carrinhoRoute = require("./route/carrinhoRoute.js");
@@ -15,6 +15,7 @@ const pedidosRoute = require('./route/pedidosRoute');
 
 
 app.use(bodyParser.json()); // Para ler o corpo das requisições como JSON
+app.use(cors())
 
 app.use("/api",produtoRoute);
 app.use("/api",PagamentoRoute);

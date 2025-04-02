@@ -1,0 +1,2563 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "API - Loja Modus",
+        "description": "Essa API foi desenvolvida pensando em oferecer uma solução eficiente para a gestão de uma loja de roupas, atendendo tanto clientes quanto administradores. Para os clientes, proporciona uma experiência fluida na navegação, compra e acompanhamento de pedidos. Já para os administradores, facilita o gerenciamento de produtos, estoque e pedidos. Essa é uma API criada por alunos da Unifacisa, permitindo a aplicação prática de conceitos como segurança, autenticação e boas práticas no desenvolvimento de APIs."
+    },
+    "servers": [
+        {
+            "url": "https://localhost:3000/welcome"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "BearerAuth": []
+        }
+    ],
+    "paths": {
+        "/loginAdmin": {
+            "post": {
+                "description": "Autenticação de Administradores via login",
+                "operationId": "autenticacaoAdmin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "admin@exemplo.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "teste123"
+                                    }
+                                },
+                                "required": ["email", "senha"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login realizado com sucesso"
+                                        },
+                                        "administrador": {
+                                            "type": "object",
+                                            "properties": {
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddc8b3d4653445b7d5d985"
+                                                },
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "Admin Padrão"
+                                                },
+                                                "cpf": {
+                                                    "type": "integer",
+                                                    "example": 12345678900
+                                                },
+                                                "senha": {
+                                                    "type": "string",
+                                                    "example": "$2b$10$9A2a7ZymBo22/2W.qIkz6.o788O5zx9XN46YDLTCh6OhTzJQg5QJG"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "admin@example.com"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/loginCliente": {
+            "post": {
+                "description": "Autenticação de Clientes via login",
+                "operationId": "autenticacaoCliente",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "miguel@exemplo.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "teste123"
+                                    }
+                                },
+                                "required": ["email", "senha"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login realizado com sucesso"
+                                        },
+                                        "cliente": {
+                                            "type": "object",
+                                            "properties": {
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67d4a281fab085515889e638"
+                                                },
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "Miguel"
+                                                },
+                                                "cpf": {
+                                                    "type": "integer",
+                                                    "example": 16548237912
+                                                },
+                                                "senha": {
+                                                    "type": "string",
+                                                    "example": "$2b$10$wI5RYfk8DCkp8xyhMlTZYul/12ulqqroAhDpE9mQQ/2sOxcsxiTba"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "miguel@example.com"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/admin": {
+            "post": {
+                "description": "Cadastrar de administrador \n \n Regras para cadastrar Administrador: \n \n - CPF: deve ser um número e ter 11 caracteres \n \n - Senha: A senha deve ter entre 6 à 10 caracteres \n \n - Email: deve ser único e ter uma formatação adequada de email.",
+                "operationId": "cadastroDeAdmin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "miguel@exemplo.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "teste123"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "teste"
+                                    },
+                                    "cpf": {
+                                        "type": "integer",
+                                        "example": 12395612478
+                                    }
+                                },
+                                "required": ["email", "senha", "nome", "cpf"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo Administrador criado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Novo Administrador criado!"
+                                        },
+                                        "Administrador": {
+                                            "type": "object",
+                                            "properties": {
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "teste"
+                                                },
+                                                "cpf": {
+                                                    "type": "integer",
+                                                    "example": 12395612478
+                                                },
+                                                "senha": {
+                                                    "type": "string",
+                                                    "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "miguel@example.com"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os administradores",
+                "operationId": "listarAdministradores",
+                "responses": {
+                    "200": {
+                        "description": "Lista de administradores",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                            },
+                                            "nome": {
+                                                "type": "string",
+                                                "example": "Carlos Unique"
+                                            },
+                                            "cpf": {
+                                                "type": "integer",
+                                                "example": 12345635600
+                                            },
+                                            "senha": {
+                                                "type": "string",
+                                                "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "carlostest@example.com"
+                                            },
+                                            "__v": {
+                                                "type": "integer",
+                                                "example": 0
+                                            }
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "_id": "67d39cd2f1abf2e1a2d969a9",
+                                            "nome": "test",
+                                            "cpf": 12345678901,
+                                            "senha": "teste123",
+                                            "email": "test@example.com",
+                                            "__v": 0
+                                        },
+                                        {
+                                            "_id": "67d3a3912e16fad9d54b5e9f",
+                                            "nome": "Nayara",
+                                            "cpf": 16548237912,
+                                            "senha": "$2b$10$Y66UgTZNITSc4TSrl0xnTO0mXQLu1AB64fnQvFvZT5xKXaK7MAXVq",
+                                            "email": "Nayara@example.com",
+                                            "__v": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get/{id}": {
+                "summary": "Listar administrador específico",
+                "operationId": "listarAdministrador",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do administrador a ser buscado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Administrador específico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string",
+                                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Carlos Unique"
+                                        },
+                                        "cpf": {
+                                            "type": "integer",
+                                            "example": 12345635600
+                                        },
+                                        "senha": {
+                                            "type": "string",
+                                            "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "carlostest@example.com"
+                                        },
+                                        "__v": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar administrador",
+                "operationId": "atualizarAdministrador",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do administrador a ser atualizado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "miguel1@exemplo.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "teste123"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "teste"
+                                    },
+                                    "cpf": {
+                                        "type": "integer",
+                                        "example": 12395612478
+                                    }
+                                },
+                                "required": ["email", "senha", "nome", "cpf"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Administrador atualizado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Administrador atualizado!"
+                                        },
+                                        "Administrador": {
+                                            "type": "object",
+                                            "properties": {
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "teste"
+                                                },
+                                                "cpf": {
+                                                    "type": "integer",
+                                                    "example": 12395612478
+                                                },
+                                                "senha": {
+                                                    "type": "string",
+                                                    "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "miguel1@example.com"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar administrador",
+                "operationId": "deletarAdministrador",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do administrador a ser deletado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Administrador deletado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Administrador deletado com sucesso!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/cliente": {
+            "post": {
+                "description": "Cadastrar cliente",
+                "operationId": "cadastroDeCliente",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "miguel@exemplo.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "teste123"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "teste"
+                                    },
+                                    "cpf": {
+                                        "type": "integer",
+                                        "example": 12395612478
+                                    }
+                                },
+                                "required": ["email", "senha", "nome", "cpf"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo Cliente criado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Novo Cliente criado!"
+                                        },
+                                        "Cliente": {
+                                            "type": "object",
+                                            "properties": {
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "teste"
+                                                },
+                                                "cpf": {
+                                                    "type": "integer",
+                                                    "example": 12395612478
+                                                },
+                                                "senha": {
+                                                    "type": "string",
+                                                    "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "miguel@example.com"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os clientes",
+                "operationId": "listarClientes",
+                "responses": {
+                    "200": {
+                        "description": "Lista de clientes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                            },
+                                            "nome": {
+                                                "type": "string",
+                                                "example": "Carlos Unique"
+                                            },
+                                            "cpf": {
+                                                "type": "integer",
+                                                "example": 12345635600
+                                            },
+                                            "senha": {
+                                                "type": "string",
+                                                "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "carlostest@example.com"
+                                            },
+                                            "__v": {
+                                                "type": "integer",
+                                                "example": 0
+                                            }
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "_id": "67d39cd2f1abf2e1a2d969a9",
+                                            "nome": "test",
+                                            "cpf": 12345678901,
+                                            "senha": "teste123",
+                                            "email": "test@example.com",
+                                            "__v": 0
+                                        },
+                                        {
+                                            "_id": "67d3a3912e16fad9d54b5e9f",
+                                            "nome": "Nayara",
+                                            "cpf": 16548237912,
+                                            "senha": "$2b$10$Y66UgTZNITSc4TSrl0xnTO0mXQLu1AB64fnQvFvZT5xKXaK7MAXVq",
+                                            "email": "Nayara@example.com",
+                                            "__v": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get/{id}": {
+                "summary": "Listar cliente específico",
+                "operationId": "listarCliente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do cliente a ser buscado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cliente específico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string",
+                                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Carlos Unique"
+                                        },
+                                        "cpf": {
+                                            "type": "integer",
+                                            "example": 12345635600
+                                        },
+                                        "senha": {
+                                            "type": "string",
+                                            "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "carlostest@example.com"
+                                        },
+                                        "__v": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar cliente",
+                "operationId": "atualizarCliente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do cliente a ser atualizado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "miguel1@exemplo.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "teste123"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "teste"
+                                    },
+                                    "cpf": {
+                                        "type": "integer",
+                                        "example": 12395612478
+                                    }
+                                },
+                                "required": ["email", "senha", "nome", "cpf"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cliente atualizado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cliente atualizado!"
+                                        },
+                                        "Cliente": {
+                                            "type": "object",
+                                            "properties": {
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "teste"
+                                                },
+                                                "cpf": {
+                                                    "type": "integer",
+                                                    "example": 12395612478
+                                                },
+                                                "senha": {
+                                                    "type": "string",
+                                                    "example": "$2b$10$U47zAMWpTv.P9jYIqlqgH.0B4BH2QZ5g0PN8P3awPKuz4WsfZkz9O"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "miguel1@example.com"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddeb0fd24e3bfd8dc51c5a"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar cliente",
+                "operationId": "deletarCliente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do cliente a ser deletado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddeb0fd24e3bfd8dc51c5a"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cliente deletado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cliente deletado com sucesso!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/categoria": {
+            "post": {
+                "description": "Cadastrar categoria",
+                "operationId": "cadastroDeCategoria",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string",
+                                        "example": "Bijuterias"
+                                    }
+                                },
+                                "required": ["tipo"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Nova categoria criada com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Nova categoria criada com sucesso!"
+                                        },
+                                        "categoria": {
+                                            "type": "object",
+                                            "properties": {
+                                                "tipo": {
+                                                    "type": "string",
+                                                    "example": "Bijuterias"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf5d2948d63bb1b6e6865"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todas as categorias",
+                "operationId": "listarCategorias",
+                "responses": {
+                    "200": {
+                        "description": "Lista de categorias",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": "67ddf5d2948d63bb1b6e6865"
+                                            },
+                                            "tipo": {
+                                                "type": "string",
+                                                "example": "Bijuterias"
+                                            },
+                                            "__v": {
+                                                "type": "integer",
+                                                "example": 0
+                                            }
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "_id": "67d42c395e4aab7c337b6eb5",
+                                            "tipo": "Acessórios",
+                                            "__v": 0
+                                        },
+                                        {
+                                            "_id": "67d42c4d5e4aab7c337b6eb7",
+                                            "tipo": "Camisas",
+                                            "__v": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get/{id}": {
+                "summary": "Listar categoria específica",
+                "operationId": "listarCategoria",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID da categoria a ser buscada",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf5d2948d63bb1b6e6865"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categoria específica",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string",
+                                            "example": "67ddf5d2948d63bb1b6e6865"
+                                        },
+                                        "tipo": {
+                                            "type": "string",
+                                            "example": "Bijuterias"
+                                        },
+                                        "__v": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar categoria",
+                "operationId": "atualizarCategoria",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID da categoria a ser atualizada",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf5d2948d63bb1b6e6865"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string",
+                                        "example": "Bijuterias"
+                                    }
+                                },
+                                "required": ["tipo"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Categoria atualizada com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Categoria atualizada com sucesso!"
+                                        },
+                                        "categoria": {
+                                            "type": "object",
+                                            "properties": {
+                                                "tipo": {
+                                                    "type": "string",
+                                                    "example": "Bijuterias"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf5d2948d63bb1b6e6865"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+           "delete": {
+    "summary": "Deletar categoria",
+    "operationId": "deletarCategoria",
+    "parameters": [
+        {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID da categoria a ser deletada",
+            "schema": {
+                "type": "string",
+                "example": "67ddf5d2948d63bb1b6e6865"
+            }
+        }
+    ],
+    "responses": {
+        "200": {
+            "description": "Categoria deletada com sucesso!",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "message": {
+                                "type": "string",
+                                "example": "Categoria deletada com sucesso!"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "400": {
+            "description": "Credenciais inválidas"
+        },
+        "500": {
+            "description": "Erro no servidor"
+        }
+    }
+}
+        },
+        "/produto": {
+            "post": {
+                "description": "Cadastrar produto",
+                "operationId": "cadastroDeProduto",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "categoria": {
+                                        "type": "string",
+                                        "example": "67d42c4d5e4aab7c337b6eb7"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Camiseta rosa básica"
+                                    },
+                                    "tamanho": {
+                                        "type": "string",
+                                        "enum": ["P", "M", "G", "GG", "XG"],
+                                        "example": "M"
+                                    },
+                                    "valor": {
+                                        "type": "number",
+                                        "example": 65.99
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "example": "Camiseta de tricô, confortável e estilosa."
+                                    },
+                                    "quantidade": {
+                                        "type": "integer",
+                                        "example": 2
+                                    }
+                                },
+                                "required": ["categoria", "nome", "tamanho", "valor", "descricao", "quantidade"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo Produto criado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Novo Produto criado com sucesso!"
+                                        },
+                                        "produto": {
+                                            "type": "object",
+                                            "properties": {
+                                                "categoria": {
+                                                    "type": "string",
+                                                    "example": "67d42c4d5e4aab7c337b6eb7"
+                                                },
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "Camiseta rosa básica"
+                                                },
+                                                "tamanho": {
+                                                    "type": "string",
+                                                    "example": "M"
+                                                },
+                                                "valor": {
+                                                    "type": "number",
+                                                    "example": 65.99
+                                                },
+                                                "descricao": {
+                                                    "type": "string",
+                                                    "example": "Camiseta de tricô, confortável e estilosa."
+                                                },
+                                                "quantidade": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf483948d63bb1b6e685e"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os produtos",
+                "operationId": "listarProdutos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de produtos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": "67ddf483948d63bb1b6e685e"
+                                            },
+                                            "categoria": {
+                                                "type": "string",
+                                                "example": "67d42c4d5e4aab7c337b6eb7"
+                                            },
+                                            "nome": {
+                                                "type": "string",
+                                                "example": "Camiseta rosa básica"
+                                            },
+                                            "tamanho": {
+                                                "type": "string",
+                                                "example": "M"
+                                            },
+                                            "valor": {
+                                                "type": "number",
+                                                "example": 65.99
+                                            },
+                                            "descricao": {
+                                                "type": "string",
+                                                "example": "Camiseta de tricô, confortável e estilosa."
+                                            },
+                                            "quantidade": {
+                                                "type": "integer",
+                                                "example": 2
+                                            },
+                                            "__v": {
+                                                "type": "integer",
+                                                "example": 0
+                                            }
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "_id": "67d4ab3b5451e4ed273b7f98",
+                                            "categoria": "67d42c4d5e4aab7c337b6eb7",
+                                            "nome": "Camiseta azul básica",
+                                            "tamanho": "M",
+                                            "valor": 65.99,
+                                            "descricao": "Camiseta de algodão, confortável e estilosa.",
+                                            "quantidade": 2,
+                                            "__v": 0
+                                        },
+                                        {
+                                            "_id": "67d4ab4a5451e4ed273b7f9b",
+                                            "categoria": "67d42c4d5e4aab7c337b6eb7",
+                                            "nome": "Camiseta preta básica",
+                                            "tamanho": "M",
+                                            "valor": 689.99,
+                                            "descricao": "Camiseta de algodão, confortável e estilosa.",
+                                            "quantidade": 5,
+                                            "__v": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get/{id}": {
+                "summary": "Listar produto específico",
+                "operationId": "listarProduto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do produto a ser buscado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf483948d63bb1b6e685e"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto específico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string",
+                                            "example": "67ddf483948d63bb1b6e685e"
+                                        },
+                                        "categoria": {
+                                            "type": "string",
+                                            "example": "67d42c4d5e4aab7c337b6eb7"
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Camiseta rosa básica"
+                                        },
+                                        "tamanho": {
+                                            "type": "string",
+                                            "example": "M"
+                                        },
+                                        "valor": {
+                                            "type": "number",
+                                            "example": 65.99
+                                        },
+                                        "descricao": {
+                                            "type": "string",
+                                            "example": "Camiseta de tricô, confortável e estilosa."
+                                        },
+                                        "quantidade": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "__v": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar produto",
+                "operationId": "atualizarProduto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do produto a ser atualizado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf483948d63bb1b6e685e"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "categoria": {
+                                        "type": "string",
+                                        "example": "67d42c4d5e4aab7c337b6eb7"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Camiseta rosa básica"
+                                    },
+                                    "tamanho": {
+                                        "type": "string",
+                                        "enum": ["P", "M", "G", "GG", "XG"],
+                                        "example": "M"
+                                    },
+                                    "valor": {
+                                        "type": "number",
+                                        "example": 65.99
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "example": "Camiseta de tricô, confortável e estilosa."
+                                    },
+                                    "quantidade": {
+                                        "type": "integer",
+                                        "example": 2
+                                    }
+                                },
+                                "required": ["categoria", "nome", "tamanho", "valor", "descricao", "quantidade"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Produto atualizado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Produto atualizado com sucesso!"
+                                        },
+                                        "produto": {
+                                            "type": "object",
+                                            "properties": {
+                                                "categoria": {
+                                                    "type": "string",
+                                                    "example": "67d42c4d5e4aab7c337b6eb7"
+                                                },
+                                                "nome": {
+                                                    "type": "string",
+                                                    "example": "Camiseta rosa básica"
+                                                },
+                                                "tamanho": {
+                                                    "type": "string",
+                                                    "example": "M"
+                                                },
+                                                "valor": {
+                                                    "type": "number",
+                                                    "example": 65.99
+                                                },
+                                                "descricao": {
+                                                    "type": "string",
+                                                    "example": "Camiseta de tricô, confortável e estilosa."
+                                                },
+                                                "quantidade": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf483948d63bb1b6e685e"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar produto",
+                "operationId": "deletarProduto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do produto a ser deletado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf483948d63bb1b6e685e"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Produto deletado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Produto deletado com sucesso!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/carrinho": {
+            "post": {
+                "description": "Cadastrar carrinho",
+                "operationId": "cadastroDeCarrinho",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "quantidade": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "valor": {
+                                        "type": "number",
+                                        "example": 750
+                                    },
+                                    "produto": {
+                                        "type": "string",
+                                        "example": "67d4ab4a5451e4ed273b7f9b"
+                                    }
+                                },
+                                "required": ["quantidade", "valor", "produto"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo Carrinho criado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Novo Carrinho criado com sucesso!"
+                                        },
+                                        "Carrinho": {
+                                            "type": "object",
+                                            "properties": {
+                                                "quantidade": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "valor": {
+                                                    "type": "number",
+                                                    "example": 750
+                                                },
+                                                "produto": {
+                                                    "type": "string",
+                                                    "example": "67d4ab4a5451e4ed273b7f9b"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf6d4948d63bb1b6e686c"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os carrinhos",
+                "operationId": "listarCarrinhos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de carrinhos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": "67ddf6d4948d63bb1b6e686c"
+                                            },
+                                            "quantidade": {
+                                                "type": "integer",
+                                                "example": 2
+                                            },
+                                            "valor": {
+                                                "type": "number",
+                                                "example": 750
+                                            },
+                                            "produto": {
+                                                "type": "string",
+                                                "example": "67d4ab4a5451e4ed273b7f9b"
+                                            },
+                                            "__v": {
+                                                "type": "integer",
+                                                "example": 0
+                                            }
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "_id": "67d4ac15d8ad3d08f6f1e99c",
+                                            "quantidade": 2,
+                                            "valor": 150,
+                                            "produto": "67d4ab4a5451e4ed273b7f9b",
+                                            "__v": 0
+                                        },
+                                        {
+                                            "_id": "67d4ac30d8ad3d08f6f1e99e",
+                                            "quantidade": 5,
+                                            "valor": 750,
+                                            "produto": "67d4ab4a5451e4ed273b7f9b",
+                                            "__v": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get/{id}": {
+                "summary": "Listar carrinho específico",
+                "operationId": "listarCarrinho",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do carrinho a ser buscado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf6d4948d63bb1b6e686c"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Carrinho específico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string",
+                                            "example": "67ddf6d4948d63bb1b6e686c"
+                                        },
+                                        "quantidade": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "valor": {
+                                            "type": "number",
+                                            "example": 750
+                                        },
+                                        "produto": {
+                                            "type": "string",
+                                            "example": "67d4ab4a5451e4ed273b7f9b"
+                                        },
+                                        "__v": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar carrinho",
+                "operationId": "atualizarCarrinho",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do carrinho a ser atualizado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf6d4948d63bb1b6e686c"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "quantidade": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "valor": {
+                                        "type": "number",
+                                        "example": 750
+                                    },
+                                    "produto": {
+                                        "type": "string",
+                                        "example": "67d4ab4a5451e4ed273b7f9b"
+                                    }
+                                },
+                                "required": ["quantidade", "valor", "produto"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Carrinho atualizado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Carrinho atualizado com sucesso!"
+                                        },
+                                        "Carrinho": {
+                                            "type": "object",
+                                            "properties": {
+                                                "quantidade": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "valor": {
+                                                    "type": "number",
+                                                    "example": 750
+                                                },
+                                                "produto": {
+                                                    "type": "string",
+                                                    "example": "67d4ab4a5451e4ed273b7f9b"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf6d4948d63bb1b6e686c"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar carrinho",
+                "operationId": "deletarCarrinho",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do carrinho a ser deletado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf6d4948d63bb1b6e686c"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Carrinho deletado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Carrinho deletado com sucesso!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/pagamento": {
+            "post": {
+                "description": "Cadastrar pagamento",
+                "operationId": "cadastroDePagamento",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "metodo": {
+                                        "type": "string",
+                                        "enum": ["Cartão", "Pix", "Boleto"],
+                                        "example": "Pix"
+                                    },
+                                    "valor": {
+                                        "type": "number",
+                                        "example": 150.75
+                                    },
+                                    "carrinho": {
+                                        "type": "string",
+                                        "example": "67ddf6d4948d63bb1b6e686c"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": ["Efetuado", "Não Efetuado"],
+                                        "example": "Não Efetuado"
+                                    }
+                                },
+                                "required": ["metodo", "valor", "carrinho", "status"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo Pagamento criado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Novo Pagamento criado com sucesso!"
+                                        },
+                                        "Pagamento": {
+                                            "type": "object",
+                                            "properties": {
+                                                "metodo": {
+                                                    "type": "string",
+                                                    "example": "Pix"
+                                                },
+                                                "valor": {
+                                                    "type": "number",
+                                                    "example": 150.75
+                                                },
+                                                "carrinho": {
+                                                    "type": "string",
+                                                    "example": "67ddf6d4948d63bb1b6e686c"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Não Efetuado"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf6de948d63bb1b6e686e"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os pagamentos",
+                "operationId": "listarPagamentos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de pagamentos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": "67ddf6de948d63bb1b6e686e"
+                                            },
+                                            "metodo": {
+                                                "type": "string",
+                                                "example": "Pix"
+                                            },
+                                            "valor": {
+                                                "type": "number",
+                                                "example": 150.75
+                                            },
+                                            "carrinho": {
+                                                "type": "string",
+                                                "example": "67ddf6d4948d63bb1b6e686c"
+                                            },
+                                            "status": {
+                                                "type": "string",
+                                                "example": "Não Efetuado"
+                                            },
+                                            "__v": {
+                                                "type": "integer",
+                                                "example": 0
+                                            }
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "_id": "67d4ad4f4318ea56844527ba",
+                                            "metodo": "Cartão",
+                                            "valor": 150.75,
+                                            "carrinho": "6603f1a2b3c4d5e6f7a8b9c0",
+                                            "status": "Não Efetuado",
+                                            "__v": 0
+                                        },
+                                        {
+                                            "_id": "67d4ad8d4318ea56844527c1",
+                                            "metodo": "Pix",
+                                            "valor": 150.75,
+                                            "carrinho": "67d4ac15d8ad3d08f6f1e99c",
+                                            "status": "Não Efetuado",
+                                            "__v": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get/{id}": {
+                "summary": "Listar pagamento específico",
+                "operationId": "listarPagamento",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do pagamento a ser buscado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf6de948d63bb1b6e686e"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pagamento específico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string",
+                                            "example": "67ddf6de948d63bb1b6e686e"
+                                        },
+                                        "metodo": {
+                                            "type": "string",
+                                            "example": "Pix"
+                                        },
+                                        "valor": {
+                                            "type": "number",
+                                            "example": 150.75
+                                        },
+                                        "carrinho": {
+                                            "type": "string",
+                                            "example": "67ddf6d4948d63bb1b6e686c"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Não Efetuado"
+                                        },
+                                        "__v": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar pagamento",
+                "operationId": "atualizarPagamento",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do pagamento a ser atualizado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf6de948d63bb1b6e686e"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "metodo": {
+                                        "type": "string",
+                                        "enum": ["Cartão", "Pix", "Boleto"],
+                                        "example": "Pix"
+                                    },
+                                    "valor": {
+                                        "type": "number",
+                                        "example": 150.75
+                                    },
+                                    "carrinho": {
+                                        "type": "string",
+                                        "example": "67ddf6d4948d63bb1b6e686c"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": ["Efetuado", "Não Efetuado"],
+                                        "example": "Não Efetuado"
+                                    }
+                                },
+                                "required": ["metodo", "valor", "carrinho", "status"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pagamento atualizado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pagamento atualizado com sucesso!"
+                                        },
+                                        "Pagamento": {
+                                            "type": "object",
+                                            "properties": {
+                                                "metodo": {
+                                                    "type": "string",
+                                                    "example": "Pix"
+                                                },
+                                                "valor": {
+                                                    "type": "number",
+                                                    "example": 150.75
+                                                },
+                                                "carrinho": {
+                                                    "type": "string",
+                                                    "example": "67ddf6d4948d63bb1b6e686c"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "Não Efetuado"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf6de948d63bb1b6e686e"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar pagamento",
+                "operationId": "deletarPagamento",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do pagamento a ser deletado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf6de948d63bb1b6e686e"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pagamento deletado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pagamento deletado com sucesso!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        },
+        "/pedido": {
+            "post": {
+                "description": "Cadastrar pedido",
+                "operationId": "cadastroDePedido",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "quantidade": {
+                                        "type": "integer",
+                                        "example": 89
+                                    },
+                                    "cliente": {
+                                        "type": "string",
+                                        "example": "67d4a281fab085515889e638"
+                                    }
+                                },
+                                "required": ["quantidade", "cliente"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Novo Pedido criado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Novo Pedido criado com sucesso!"
+                                        },
+                                        "Pedido": {
+                                            "type": "object",
+                                            "properties": {
+                                                "quantidade": {
+                                                    "type": "integer",
+                                                    "example": 89
+                                                },
+                                                "cliente": {
+                                                    "type": "string",
+                                                    "example": "67d4a281fab085515889e638"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf78a948d63bb1b6e6875"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listar todos os pedidos",
+                "operationId": "listarPedidos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de pedidos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "_id": {
+                                                "type": "string",
+                                                "example": "67ddf78a948d63bb1b6e6875"
+                                            },
+                                            "quantidade": {
+                                                "type": "integer",
+                                                "example": 89
+                                            },
+                                            "cliente": {
+                                                "type": "string",
+                                                "example": "67d4a281fab085515889e638"
+                                            },
+                                            "__v": {
+                                                "type": "integer",
+                                                "example": 0
+                                            }
+                                        }
+                                    },
+                                    "example": [
+                                        {
+                                            "_id": "67d4a45331501f5061c79662",
+                                            "quantidade": 1,
+                                            "cliente": "67d4a281fab085515889e638",
+                                            "__v": 0
+                                        },
+                                        {
+                                            "_id": "67d4a45b31501f5061c79665",
+                                            "quantidade": 172,
+                                            "cliente": "67d4a281fab085515889e638",
+                                            "__v": 0
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "get/{id}": {
+                "summary": "Listar pedido específico",
+                "operationId": "listarPedido",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do pedido a ser buscado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf78a948d63bb1b6e6875"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pedido específico",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string",
+                                            "example": "67ddf78a948d63bb1b6e6875"
+                                        },
+                                        "quantidade": {
+                                            "type": "integer",
+                                            "example": 89
+                                        },
+                                        "cliente": {
+                                            "type": "string",
+                                            "example": "67d4a281fab085515889e638"
+                                        },
+                                        "__v": {
+                                            "type": "integer",
+                                            "example": 0
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar pedido",
+                "operationId": "atualizarPedido",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do pedido a ser atualizado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf78a948d63bb1b6e6875"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "quantidade": {
+                                        "type": "integer",
+                                        "example": 89
+                                    },
+                                    "cliente": {
+                                        "type": "string",
+                                        "example": "67d4a281fab085515889e638"
+                                    }
+                                },
+                                "required": ["quantidade", "cliente"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pedido atualizado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido atualizado com sucesso!"
+                                        },
+                                        "Pedido": {
+                                            "type": "object",
+                                            "properties": {
+                                                "quantidade": {
+                                                    "type": "integer",
+                                                    "example": 89
+                                                },
+                                                "cliente": {
+                                                    "type": "string",
+                                                    "example": "67d4a281fab085515889e638"
+                                                },
+                                                "_id": {
+                                                    "type": "string",
+                                                    "example": "67ddf78a948d63bb1b6e6875"
+                                                },
+                                                "__v": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar pedido",
+                "operationId": "deletarPedido",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do pedido a ser deletado",
+                        "schema": {
+                            "type": "string",
+                            "example": "67ddf78a948d63bb1b6e6875"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pedido deletado com sucesso!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Pedido deletado com sucesso!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "500": {
+                        "description": "Erro no servidor"
+                    }
+                }
+            }
+        }
+    }
+}

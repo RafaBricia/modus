@@ -2,16 +2,23 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart,faUser } from "@fortawesome/free-solid-svg-icons";
 import style from "./NavBar.module.css";
+import { useNavigate } from "react-router-dom";
 
-function NavBar({ enviandoCategoriaSelecionada }) {
-  const [categoria, setCategoria] = React.useState("Home");
+function NavBar() {
+  
+  const navigate = useNavigate();
+  // const [categoria, setCategoria] = React.useState("Home");
+  // const navigate = useNavigate();
 
-  const selecionarCategoria = (categoriaSelecionada) => {
-    setCategoria(categoriaSelecionada);
-    enviandoCategoriaSelecionada(categoriaSelecionada);  // Passa a categoria para o componente pai
-  };
+  const selecionarCategoria = (categoria) => {
+    navigate(`/${categoria}`); // Redireciona para a página Home
+  }
 
-  console.log(categoria); 
+  // const selecionarCategoria = (categoriaSelecionada) => {
+  //   setCategoria(categoriaSelecionada);
+  //   enviandoCategoriaSelecionada(categoriaSelecionada);  // Passa a categoria para o componente pai
+  // };
+
 
   return (
     <div className={style.navBar}>
