@@ -32,6 +32,9 @@ const produtoSchema = new Schema({
     quantidade: { 
         type: Number, 
         required: true
+    },
+    image:{
+        type: String
     }    
 });
 

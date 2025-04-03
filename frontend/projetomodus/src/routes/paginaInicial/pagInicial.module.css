@@ -1,0 +1,22 @@
+.containerInicial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+   height: 90vh;
+}
+
+.btnLogin{
+    background-color: #000;
+    color: #fff;
+    margin: 10px;
+    width: 200px;
+    font-size: 18px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.paragAcesso{
+    margin: 20px;
+}

@@ -1,0 +1,48 @@
+.cardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto; /* Centraliza o container */
+    padding: 20px; /* Adiciona espaçamento interno */
+}
+.card{
+    background-color: #fff;
+    width: 300px;
+    height: 100%;
+    margin: 50px;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+/* No Card.module.css */
+.detalhesProduto {
+    font-size: 15px;
+    margin: 5px;
+    color: #000;
+    text-align: left; /* Alinhamento de texto à esquerda */
+    width: 100%;
+}
+
+.productImage {
+    width: 180px;
+    height: 180px; /* Altura fixa igual à largura para manter proporção */
+    object-fit: cover; /* Corta a imagem para preencher o espaço */
+    object-position: center; /* Centraliza o foco da imagem */
+    border-radius: 8px;
+    margin: 10px 0;
+    display: block;
+    background-color: transparent !important; /* Força transparência */
+    border: none; /* Remove bordas se houver */
+    padding: 0; /* Remove padding se houver */
+}
+
+.buttonAddCarrinho{
+    margin-top: 20px;
+    background-color: #000 !important;
+    border-radius: 5px;
+    color: #fff;
+}

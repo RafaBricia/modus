@@ -1,36 +1,109 @@
 import style from "./PagCategorie.module.css";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Logo from "../../components/Logo/Logo";
+import NavBar from "../../components/NavBar/NavBar";
+import api from '../../services/api.js';
 
 function PagCategorie() {
-    const navigate = useNavigate();
-    const { nomeCategoria } = useParams(); // Captura a categoria da URL
+    const { nomeCategoria } = useParams();
     const [produtos, setProdutos] = useState([]);
+    const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+    const [categoriaMap, setCategoriaMap] = useState({});
+
+    async function getProdutos() {
+        try {
+            const response = await api.get('/produto');
+            setProdutos(response.data);
+            filtrarProdutos(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar produtos:", error);
+        }
+    }
+
+    async function getCategorias() {
+        try {
+            const response = await api.get('/categoria');
+            setCategorias(response.data);
+            
+            const map = {};
+            response.data.forEach(cat => {
+                map[cat._id] = cat.tipo;
+            });
+            setCategoriaMap(map);
+        } catch (error) {
+            console.error("Erro ao buscar categorias:", error);
+        }
+    }
+
+    function getCategoria(categoriaId) {
+        return categoriaMap[categoriaId] || 'Sem categoria';
+    }
+
+    function filtrarProdutos(todosProdutos) {
+        if (!nomeCategoria) {
+            setProdutosFiltrados(todosProdutos);
+            return;
+        }
+
+        const categoria = categorias.find(cat => 
+            cat.tipo.toLowerCase() === nomeCategoria.toLowerCase()
+        );
+
+        if (categoria) {
+            const filtrados = todosProdutos.filter(produto => 
+                produto.categoria === categoria._id
+            );
+            setProdutosFiltrados(filtrados);
+        } else {
+            setProdutosFiltrados(todosProdutos);
+        }
+    }
 
     useEffect(() => {
-        fetch("SUA_URL_AQUI") // Substitua pela URL correta da API
-            .then((response) => response.json())
-            .then((data) => {
-                // Filtrar os produtos pela categoria selecionada
-                const produtosFiltrados = data.filter(produto => produto.categoria === nomeCategoria);
-                setProdutos(produtosFiltrados);
-            })
-            .catch(error => console.error("Erro ao buscar os produtos: ", error));
-    }, [nomeCategoria]); // Atualiza os produtos quando a categoria muda
+        getCategorias();
+        getProdutos();
+    }, []);
+
+    useEffect(() => {
+        if (produtos.length > 0 && categorias.length > 0) {
+            filtrarProdutos(produtos);
+        }
+    }, [nomeCategoria, produtos, categorias]);
 
     return (
-        <div className={style.PagCategorie}>
-            <h2>Categoria: {nomeCategoria}</h2>
-            <div className={style.produtosContainer}>
-                {produtos.map((produto) => (
-                    <div key={produto.id} className={style.card}>
-                        <img src={produto.imageUrl} alt={produto.nomeProduto} />
-                        <h3>{produto.nomeProduto}</h3>
-                        <p>ID do Produto: {produto.id}</p>
-                        <p>{produto.descricao}</p>
-                        <button onClick={() => navigate(`/produto/${produto.id}`)}>
-                            Adicionar ao carrinho
-                        </button>
+        <div>
+            <Logo />
+            <NavBar />
+            <div className={style.cardsContainer}>
+                {produtosFiltrados.map((produto) => (
+                    <div key={produto._id} className={style.card}>
+                        <img 
+                            src={produto.image} 
+                            alt={produto.nome}
+                            className={style.productImage}
+                            onError={(e) => {
+                                e.target.src = '/placeholder-product.jpg';
+                                console.error('Erro ao carregar imagem:', produto.image);
+                            }}
+                        />
+                        <p className={style.detalhesProduto}>{produto.nome}</p>
+                        <p className={style.detalhesProduto}>
+                            <b>Categoria: {getCategoria(produto.categoria)}</b>
+                        </p>
+                        <p className={style.detalhesProduto}>Tamanhos: {Array.isArray(produto.tamanho) ? produto.tamanho.join(', ') : produto.tamanho}</p>
+                        <p className={style.detalhesProduto}>Quantidade: {produto.quantidade}</p>
+                        <p className={style.detalhesProduto}>
+                            <b>R$ {typeof produto.valor === 'number' ? produto.valor.toFixed(2) : produto.valor}</b>
+                        </p>
+                        <p className={style.detalhesProduto}>{produto.descricao}</p>
+
+                        <div>
+                            <button className={style.buttonAddCarrinho}>
+                                Adicionar
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>

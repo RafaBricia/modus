@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
-import style from "./NavBar.module.css";
+import { faUser, faGear } from "@fortawesome/free-solid-svg-icons";
+import style from "./NavBarAdmin.module.css";
 import { useNavigate } from "react-router-dom";
 import api from '../../services/api.js';
 
-
-// NavBar.js
-function NavBar() {
+// NavBarAdmin.js
+function NavBarAdmin() {
   const navigate = useNavigate();
   const [categorias, setCategorias] = useState([]);
 
@@ -29,7 +28,7 @@ function NavBar() {
   }, []);
 
   return (
-    <div className={style.navBar}>
+    <div className={style.NavBarAdmin}>
       <div className={style.categories}>
         {categorias.map((categoria) => (
           <button 
@@ -43,11 +42,12 @@ function NavBar() {
       <div className={style.profile}>
 
         <button className={style.iconButton}>
-          <FontAwesomeIcon icon={faShoppingCart} /> 
-        </button>   
+          <FontAwesomeIcon icon={faUser} />
+        </button>
+
 
         <button className={style.iconButton}>
-          <FontAwesomeIcon icon={faUser} />
+          <FontAwesomeIcon icon={faGear} />
         </button>
 
       </div>
@@ -55,4 +55,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavBarAdmin;

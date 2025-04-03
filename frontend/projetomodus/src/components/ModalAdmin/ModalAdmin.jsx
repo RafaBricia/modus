@@ -1,52 +1,120 @@
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import style from "./ModalAdmin.module.css";
+import Logo from "../Logo/Logo";
+import { useNavigate } from "react-router-dom";
+import api from "../../services/api";
 
-function ModalAdmin() {
+function ModalAdmin({ produto }) {
     const navigate = useNavigate();
-    const [produtos, setProdutos] = useState([]);
-    const [produtoSelecionado, setProdutoSelecionado] = useState(null); // Estado para o produto do modal
 
-    useEffect(() => {
-        fetch("SUA_URL_AQUI") // Substitua pela URL correta da API
-            .then((response) => response.json())
-            .then((data) => setProdutos(data))
-            .catch(error => console.error("Erro ao buscar os produtos: ", error));
-    }, []);
+    const submitForm = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = {
+            image: form.image.value,
+            nome: form.nome.value,
+            categoria: form.categoria.value,
+            valor: form.valor.value,
+            tamanho: form.tamanho.value,
+            quantidade: form.quantidade.value,
+            descricao: form.descricao.value
+        };
+
+        api.put(`/produto/${produto._id}`, formData)
+            .then(() => navigate('/homeAdmin'))
+            .catch(error => {
+                console.error("Erro ao salvar:", error);
+                alert("Erro ao salvar as alterações");
+            });
+    };
 
     return (
-        <div className={style.ModalAdmin}>
-            {produtos.map((produto) => (
-                <div key={produto.id} className={style.card} onClick={() => setProdutoSelecionado(produto)}>
-                    <h3>{produto.nomeProduto}</h3>
-                    <p>{produto.descricao}</p>
-                </div>
-            ))}
+        <div className={style.modalBackground}>
+            <div className={style.modalContent}>
+                <Logo />
+                <form onSubmit={submitForm}>
+                    <label>
+                        Link da imagem:
+                        <input 
+                            type="text" 
+                            name="image" 
+                            defaultValue={produto?.image || ""}
+                        />
+                    </label>
 
-            {/* Modal - Só aparece se houver um produto selecionado */}
-            <Modal show={!!produtoSelecionado} onHide={() => setProdutoSelecionado(null)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{produtoSelecionado?.nomeProduto}</Modal.Title>
-                </Modal.Header>
+                    <label>
+                        Nome da peça:
+                        <input 
+                            type="text" 
+                            name="nome" 
+                            defaultValue={produto?.nome || ""}
+                        />
+                    </label>
 
-                <Modal.Body>
-                    <p>ID do Produto: {produtoSelecionado?.id}</p>
-                    <h3>{produtoSelecionado?.categoria}</h3>
-                </Modal.Body>
+                    <label>
+                        Categoria:
+                        <input 
+                            type="text" 
+                            name="categoria" 
+                            defaultValue={produto?.categoria || ""}
+                        />
+                    </label>
 
-                <Modal.Footer>
-                    <p>{produtoSelecionado?.descricao}</p>
-                    <Button variant="primary" onClick={() => navigate(`/produto/${produtoSelecionado?.id}`)}>
-                        Adicionar ao carrinho
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                    <label>
+                        Valor:
+                        <input 
+                            type="text" 
+                            name="valor" 
+                            defaultValue={produto?.valor || ""}
+                        />
+                    </label>
+
+                    <label>
+                        Tamanho:
+                        <input 
+                            type="text" 
+                            name="tamanho" 
+                            defaultValue={produto?.tamanho || ""}
+                        />
+                    </label>
+
+                    <label>
+                        Quantidade:
+                        <input 
+                            type="text" 
+                            name="quantidade" 
+                            defaultValue={produto?.quantidade || ""}
+                        />
+                    </label>
+
+                    <label className={style.pergunta}>
+                        Descrição:
+                        <input 
+                            type="text" 
+                            name="descricao" 
+                            defaultValue={produto?.descricao || ""}
+                        />
+                    </label>
+
+                    <div className={style.buttonGroup}>
+                        <button 
+                            type="button" 
+                            className={style.button} 
+                            onClick={() => navigate('/homeAdmin')}
+                        >
+                            Cancelar
+                        </button>
+                        <button 
+                            type="submit" 
+                            className={style.button}
+                        >
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
 
 export default ModalAdmin;
-
-
