@@ -1,12 +1,12 @@
 import React from "react";
-import Logo from "../../components/Logo/Logo";
+import LogoAdmin from "../../components/LogoAdmin/LogoAdmin";
 import NavBarAdmin from "../../components/NavBarAdmin/NavBarAdmin";
 import CardAdmin from "../../components/CardAdmin/CardAdmin";
 
 function HomeAdmin() {
   return (
     <div>
-      <Logo />
+      <LogoAdmin />
       <NavBarAdmin></NavBarAdmin>
       <CardAdmin></CardAdmin>
     </div>

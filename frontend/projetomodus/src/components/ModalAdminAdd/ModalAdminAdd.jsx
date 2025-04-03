@@ -1,10 +1,11 @@
 import React from "react";
-import style from "./ModalAdmin.module.css";
-import Logo from "../Logo/Logo";
+import ModalAdminAdd from "../ModalAdmin copy/ModalAdminAdd";
+import LogoAdmin from "../LogoAdmin/LogoAdmin";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
-function ModalAdmin({ produto }) {
+function ModalAdminAdd({ produto }){
+    
     const navigate = useNavigate();
 
     const submitForm = (e) => {
@@ -20,18 +21,20 @@ function ModalAdmin({ produto }) {
             descricao: form.descricao.value
         };
 
-        api.put(`/produto/${produto._id}`, formData)
+        api.post(`/produto/${produto._id}`, formData)
             .then(() => navigate('/homeAdmin'))
+            //add o token aqui qnd fizer a pagina de login corretamente
             .catch(error => {
-                console.error("Erro ao salvar:", error);
-                alert("Erro ao salvar as alterações");
+                console.error("Erro ao adicionar produto :", error);
+                alert("Erro ao adicionar produto");
             });
     };
 
     return (
         <div className={style.modalBackground}>
             <div className={style.modalContent}>
-                <Logo />
+                <LogoAdmin />
+                <p>Adicionando produto</p>
                 <form onSubmit={submitForm}>
                     <label>
                         Link da imagem:
@@ -117,4 +120,6 @@ function ModalAdmin({ produto }) {
     );
 }
 
-export default ModalAdmin;
+
+export default ModalAdminAdd;
+
