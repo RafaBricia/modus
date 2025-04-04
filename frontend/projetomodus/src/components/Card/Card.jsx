@@ -23,7 +23,6 @@ function Card() {
             const response = await api.get('/categoria');
             setCategorias(response.data);
             
-            // Cria mapa de categorias para acesso rápido
             const map = {};
             response.data.forEach(cat => {
                 map[cat._id] = cat.tipo;

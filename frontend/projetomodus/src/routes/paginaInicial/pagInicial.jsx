@@ -7,11 +7,11 @@ function PagInicial(){
     const navigate = useNavigate();
 
     function loginAdmin(){
-        navigate('/LoginAd');
+        navigate('/loginAdmin');
     }
 
     function loginCliente(){
-        navigate('/Login');
+        navigate('/login');
     }
     return(
         <>

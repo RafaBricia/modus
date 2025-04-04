@@ -4,12 +4,12 @@ import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import style from "./NavBar.module.css";
 import { useNavigate } from "react-router-dom";
 import api from '../../services/api.js';
+import ModalPerfil from "../ModalPerfil/ModalPerfil.jsx";
 
-
-// NavBar.js
 function NavBar() {
   const navigate = useNavigate();
   const [categorias, setCategorias] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   async function getCategorias() {
     try {
@@ -24,34 +24,43 @@ function NavBar() {
     navigate(`/categoria/${tipo.toLowerCase()}`, { state: { categoriaId } });
   };
 
+  const mostrarModalPerfil = () => {
+    setShowModal(!showModal);
+  };
+
   useEffect(() => {
     getCategorias();
   }, []);
 
   return (
-    <div className={style.navBar}>
-      <div className={style.categories}>
-        {categorias.map((categoria) => (
+    <>
+      <div className={style.navBar}>
+        <div className={style.categories}>
+          {categorias.map((categoria) => (
+            <button 
+              key={categoria._id}
+              onClick={() => selecionarCategoria(categoria._id, categoria.tipo)}
+            >
+              {categoria.tipo}
+            </button>
+          ))}
+        </div>
+        <div className={style.profile}>
+          <button className={style.iconButton}>
+            <FontAwesomeIcon icon={faShoppingCart} /> 
+          </button>   
+
           <button 
-            key={categoria._id}
-            onClick={() => selecionarCategoria(categoria._id, categoria.tipo)}
+            className={style.iconButton}
+            onClick={mostrarModalPerfil}
           >
-            {categoria.tipo}
+            <FontAwesomeIcon icon={faUser} />
           </button>
-        ))}
+        </div>
       </div>
-      <div className={style.profile}>
 
-        <button className={style.iconButton}>
-          <FontAwesomeIcon icon={faShoppingCart} /> 
-        </button>   
-
-        <button className={style.iconButton}>
-          <FontAwesomeIcon icon={faUser} />
-        </button>
-
-      </div>
-    </div>
+      {showModal && <ModalPerfil onClose={mostrarModalPerfil} />}
+    </>
   );
 }
 

@@ -22,7 +22,6 @@ function ModalAdminEdit({ produto }) {
 
         api.put(`/produto/${produto._id}`, formData)
             .then(() => navigate('/homeAdmin'))
-            //add o token aqui qnd fizer a pagina de login corretamente
             .catch(error => {
                 console.error("Erro ao salvar:", error);
                 alert("Erro ao salvar as alterações");

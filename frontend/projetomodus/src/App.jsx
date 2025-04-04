@@ -10,21 +10,27 @@ import Login from './routes/Login/Login';
 import Cadastro from './routes/Cadastro/Cadastro';
 import CadastroAdmin from './routes/CadastroAdmin/CadastroAdmin';
 import LoginAdmin from './routes/LoginAdmin/LoginAdmin';
+import ProdutoAdd from './routes/ProdutoAdicionar/ProdutoAdicionar';
+import CategoriaAdicionar from './routes/CategoriaAdicionar/CategoriaAdicionar';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/categoria/:nomeCategoria" element={<PagCategorie />} />
+        <Route path="/home" element={<PrivateRoute element={<Home />}/> } />
+        <Route path="/categoria/:nomeCategoria" element={<PrivateRoute element={<PagCategorie />}/> } />
         <Route path="/" element={<PagInicial />} />
         <Route path="/login" element={<Login />} />
         <Route path="/loginAdmin" element={<LoginAdmin />} />
-        <Route path="/homeAdmin" element={<HomeAdmin />} />
-        <Route path="/editar/produto" element={<ModalAdminEdit />} />
+        <Route path="/homeAdmin" element={<PrivateRoute element={<HomeAdmin />}/> } />
+        <Route path="/editar/produto" element={<PrivateRoute element={<ModalAdminEdit />}/> } />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/cadastroAdmin" element={<CadastroAdmin />} />
-
+        <Route path="/adicionar/categoria"  element={<PrivateRoute element={<ProdutoAdd />}/> }/>
+        <Route path="/adicionar/produto" element={<PrivateRoute element={<CategoriaAdicionar />}/> } />
+        
+        {/* element={<PrivateRoute element={}/> } */}
       </Routes>
     </Router>
   );

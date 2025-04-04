@@ -11,6 +11,10 @@
 
 }
 
+.btnGroup{
+    background-color: #000;
+}
+
 button{
     background-color: var(--cinza);
     border: none;

@@ -1,0 +1,73 @@
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 8px;
+    width: 80vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin: 20px;
+}
+
+form{
+    max-width: 70% !important;
+
+}
+
+label, select{
+    display: block;
+    margin-bottom: 5px;
+    text-align: left !important;
+    align-self: flex-start;
+    width: 100% !important;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Estilo dos inputs */
+input, textarea, select{
+    width: 100% !important;
+    height: 40px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    text-align: left !important;
+    background-color: transparent;
+    font-family: 'montserrat';
+}
+
+.pergunta textarea {
+    height: 100px;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: space-between !important;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center; 
+    min-width: 40%;
+    margin: 30px 15px 0 ;  
+}
