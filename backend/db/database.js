@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 const Admin = require('../model/adminModel.js')
+const bcrypt = require("bcrypt");
 
 const server = 'localhost:27017'; 
 const database = 'modusDB'; // botar o nome do banco

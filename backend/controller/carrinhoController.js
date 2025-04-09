@@ -67,13 +67,14 @@ const postCarrinho = async (req, res) => {
 };
 
 const getAllCarrinhos = async (req, res) => {
-    try {
-        const carrinhos = await Carrinho.find();
-        res.json(carrinhos);
-    } catch (error) {
-        res.status(500).json({ message: 'Não é possível listar os Carrinhos.' });
-    }
+  try {
+    const carrinhos = await Carrinho.find().populate('produto');
+    res.status(200).json(carrinhos);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar o carrinho' });
+  }
 };
+
 
 const getCarrinho = async (req, res) => {
     
