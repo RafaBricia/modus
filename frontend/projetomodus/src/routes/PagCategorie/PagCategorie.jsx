@@ -72,6 +72,39 @@ function PagCategorie() {
         }
     }, [nomeCategoria, produtos, categorias]);
 
+    async function adicionarAoCarrinho(produto) {
+        try {
+            console.log("Clicou em adicionar:", produto);
+    
+            const response = await api.get("/carrinho");
+            const carrinhos = response.data;
+    
+            const existente = carrinhos.find(
+                (item) => item.produto._id === produto._id
+            );
+    
+            if (existente) {
+                await api.put(`/carrinho/${existente._id}`, {
+                    quantidade: existente.quantidade + 1,
+                    valor: produto.valor,
+                    produto: produto._id,
+                });
+            } else {
+                await api.post("/carrinho", {
+                    produto: produto._id,
+                    quantidade: 1,
+                    valor: produto.valor,
+                });
+            }
+    
+            alert("Produto adicionado ao carrinho!");
+        } catch (error) {
+            console.error("Erro ao adicionar produto ao carrinho:", error);
+            alert("Erro ao adicionar produto ao carrinho!");
+        }
+    }
+    
+
     return (
         <div>
             <Logo />
@@ -100,9 +133,12 @@ function PagCategorie() {
                         <p className={style.detalhesProduto}>{produto.descricao}</p>
 
                         <div>
-                            <button className={style.buttonAddCarrinho}>
-                                Adicionar
-                            </button>
+                        <button
+  className={style.buttonAddCarrinho}
+  onClick={() => adicionarAoCarrinho(produto)}
+>
+  Adicionar
+</button>
                         </div>
                     </div>
                 ))}

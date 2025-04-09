@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import style from "./NavBar.module.css";
 import { useNavigate } from "react-router-dom";
-import api from '../../services/api.js';
+import api from "../../services/api.js";
 import ModalPerfil from "../ModalPerfil/ModalPerfil.jsx";
 
 function NavBar() {
@@ -13,7 +13,7 @@ function NavBar() {
 
   async function getCategorias() {
     try {
-      const response = await api.get('/categoria');
+      const response = await api.get("/categoria");
       setCategorias(response.data);
     } catch (error) {
       console.error("Erro ao buscar categorias:", error);
@@ -37,7 +37,7 @@ function NavBar() {
       <div className={style.navBar}>
         <div className={style.categories}>
           {categorias.map((categoria) => (
-            <button 
+            <button
               key={categoria._id}
               onClick={() => selecionarCategoria(categoria._id, categoria.tipo)}
             >
@@ -46,14 +46,14 @@ function NavBar() {
           ))}
         </div>
         <div className={style.profile}>
-          <button className={style.iconButton}>
-            <FontAwesomeIcon icon={faShoppingCart} /> 
-          </button>   
-
-          <button 
+          <button
             className={style.iconButton}
-            onClick={mostrarModalPerfil}
+            onClick={() => navigate("/carrinho")}
           >
+            <FontAwesomeIcon icon={faShoppingCart} />
+          </button>
+
+          <button className={style.iconButton} onClick={mostrarModalPerfil}>
             <FontAwesomeIcon icon={faUser} />
           </button>
         </div>

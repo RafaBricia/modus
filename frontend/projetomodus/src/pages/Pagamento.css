@@ -1,0 +1,60 @@
+.pagamentoContainer {
+    padding: 2rem;
+    font-family: sans-serif;
+  }
+  
+  .formasPagamento {
+    display: flex;
+  gap: 1rem;
+  margin-top: 2rem; /* Isso afasta os botões do topo */
+  justify-content: center;
+  flex-wrap: wrap
+
+  }
+  
+  .botaoForma {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+  }
+  
+  .botaoForma input {
+    display: none;
+  }
+  
+  .botaoForma.selecionado {
+    background-color: #000;
+    color: white;
+    border-color: #000;
+  }
+  
+  .dadosPagamento {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+  }
+  
+  .dadosPagamento input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .botaoConfirmar {
+    margin-top: 2rem;
+    padding: 10px 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
