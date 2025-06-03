@@ -26,7 +26,7 @@ app.use("/api",loginRoute);
 app.use("/api", categoriaRoute);
 app.use("/api", pedidosRoute);
 
-const port = 3000;
+const port = 80;
 app.listen(port, () => {
 
   console.log(`Aplicação rodando na porta ${port}`);
