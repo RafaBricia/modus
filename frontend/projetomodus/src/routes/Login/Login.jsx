@@ -57,7 +57,7 @@ function Login() {
           required
         />
 
-        <label className={styles.label}>
+        <p className={styles.label}>
           Não possui cadastro? 
           <button 
             type="button"
@@ -66,7 +66,8 @@ function Login() {
           >
             Cadastre-se
           </button>
-        </label>
+        </p>
+
 
         <button type="submit" className={styles.button}>
           Entrar

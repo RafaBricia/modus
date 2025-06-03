@@ -103,15 +103,17 @@ function Cadastro() {
           maxLength={10}
         />
 
-        <label className={styles.label}>Já possui cadastro? 
-          <button 
-            type="button" 
-            className={styles.btnCadastro}
-            onClick={PaginaLogin}
-          >
-            Logue-se
-          </button>
-        </label>
+      <p className={styles.label}>
+        Já possui cadastro? 
+        <button 
+          type="button" 
+          className={styles.btnCadastro}
+          onClick={PaginaLogin}
+        >
+          Logue-se
+        </button>
+      </p>
+
 
         <button type="submit" className={styles.button}>
           Cadastrar
