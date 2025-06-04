@@ -14,8 +14,8 @@ const PagamentoRoute = require('./route/pagamentoRoute');
 const pedidosRoute = require('./route/pedidosRoute');
 
 
-app.use(bodyParser.json()); // Para ler o corpo das requisições como JSON
 app.use(cors())
+app.use(bodyParser.json()); // Para ler o corpo das requisições como JSON
 
 app.use("/api",produtoRoute);
 app.use("/api",PagamentoRoute);
