@@ -4,6 +4,11 @@ require('dotenv').config();
 const secret = process.env.JWT_SECRET;
 
 const withAuth = (req, res, next) => {
+
+    const noAuthPath = ["api/loginAdmin"]
+    if( noAuthPath.includes(req.path)&& req.method === "POST") {
+        return next(); 
+    }
     const token = req.headers["authorization"]?.split(' ')[1];
 
     if (!token) {
