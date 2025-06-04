@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
 const Cliente = require("../model/clienteModel");
 const Administrador = require("../model/adminModel");
+const Constants = require("../constants/key");
 
-require('dotenv').config();
-
-const secret = process.env.JWT_SECRET;
+const secret = Constants.JWT_SECRET;
 
 const loginCliente = async (req, res) => {
     const { email, senha } = req.body;
