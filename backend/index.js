@@ -15,7 +15,7 @@ const pedidosRoute = require('./route/pedidosRoute');
 
 
 app.use(cors({
-  origin: 'http://13.57.238.210:5173'
+  origin: 'http://54.219.239.246:5173'
 }));
 app.use(bodyParser.json()); // Para ler o corpo das requisições como JSON
 
