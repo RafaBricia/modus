@@ -6,7 +6,7 @@ function LogoAdmin() {
     const navigate = useNavigate();
     
     const goToHome = () => {
-        navigate('/home');
+        navigate('/homeAdmin');
     };
     
     return (

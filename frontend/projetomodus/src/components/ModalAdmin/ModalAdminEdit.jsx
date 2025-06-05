@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./ModalAdminEdit.module.css";
-import LogoAdmin from "../LogoAdmin/LogoAdmin";
+import LogoAdmin from "../LogoAdmin/LogoAdmin.jsx";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 

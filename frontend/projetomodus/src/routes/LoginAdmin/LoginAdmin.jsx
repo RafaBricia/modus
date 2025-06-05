@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import styles from "./LoginAdmin.module.css";
 import api from "../../services/api.js";
-import Logo from "../../components/Logo/Logo.jsx";
+import Logo from "../../components/LogoAdmin/LogoAdmin.jsx";
 import { useNavigate } from "react-router-dom";
 
 function LoginAdmin() {

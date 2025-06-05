@@ -1,6 +1,6 @@
 import React from "react";
 import ModalAdminAdd from "../ModalAdmin copy/ModalAdminAdd";
-import LogoAdmin from "../LogoAdmin/LogoAdmin";
+import LogoAdmin from "../LogoAdmin/LogoAdmin.jsx";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
