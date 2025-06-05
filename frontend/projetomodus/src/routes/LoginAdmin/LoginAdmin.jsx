@@ -38,7 +38,7 @@ function LoginAdmin() {
     }
   } catch (error) {
     console.error("Erro no login:", error);
-    console.log("Erro completo:", error.response); // Ver conteúdo da resposta de erro
+    console.log("Erro completo:", error.response?.data?.message ); // Ver conteúdo da resposta de erro
     setError(error.response?.data?.message || "Erro ao fazer login. Verifique suas credenciais.");
   }
 }
