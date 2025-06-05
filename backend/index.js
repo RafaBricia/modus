@@ -14,7 +14,9 @@ const PagamentoRoute = require('./route/pagamentoRoute');
 const pedidosRoute = require('./route/pedidosRoute');
 
 
-app.use(cors())
+app.use(cors({
+  origin: 'http://13.57.238.210:5173'
+}));
 app.use(bodyParser.json()); // Para ler o corpo das requisições como JSON
 
 app.use("/api",produtoRoute);
