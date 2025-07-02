@@ -10,9 +10,18 @@ export class getClientsController implements GetClientsController{
 
             const clients = await this.getclientsRepository.getClients();
             
-            return{
-                statusCode: 200,
-                body: clients
+            if (!clients || clients.length === 0) {
+                return {
+                    statusCode: 404,
+                    body: "No clients found"
+                };
+            }
+            
+            else {
+                return{
+                    statusCode: 200,
+                    body: clients
+                }
             }
 
         } catch (error) {

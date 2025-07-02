@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-export interface Pedido {
+export interface Order {
     id: string;
     cliente: Types.ObjectId;
     produtos: Types.ObjectId[];

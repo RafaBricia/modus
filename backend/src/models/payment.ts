@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-export interface Pagamento {
+export interface Payment {
   metodo: "Cartão" | "Pix" | "Boleto";
   valor: number;
   carrinho: Types.ObjectId ;
