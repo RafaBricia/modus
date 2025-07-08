@@ -6,6 +6,6 @@ export interface GetCartsController{
 
 }
 
-export interface GetCartsRepositories {
+export interface GetCartsRepository {
     getCarts(): Promise<Cart[] >;
 }
