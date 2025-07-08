@@ -1,14 +1,13 @@
-import { Cart } from '../../../models/cart';
-import { HttpResponse } from '../../protocols';
-import { GetCartsController, GetCartsRepositories } from './protocols';
+
+import { GetCartsController, GetCartsRepository } from './protocols';
 
 export class getCartsController implements GetCartsController {
 
-    constructor(private readonly getCartsRepositories: GetCartsRepositories) {}
+    constructor(private readonly getCartsRepository: GetCartsRepository) {}
 
     async handle() {
 
-        const carts = await this.getCartsRepositories.getCarts();
+        const carts = await this.getCartsRepository.getCarts();
 
         try {
             if (!carts || carts.length === 0) {

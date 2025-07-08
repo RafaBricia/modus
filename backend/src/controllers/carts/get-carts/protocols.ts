@@ -2,10 +2,10 @@ import { Cart } from "../../../models/cart";
 import { HttpResponse } from "../../protocols";
 
 export interface GetCartsController{
-    handle(): Promise<HttpResponse<Cart[]>>
+    handle(): Promise<HttpResponse<Cart[] | string>>;
 
 }
 
 export interface GetCartsRepository {
-    getCarts(): Promise<Cart[] >;
+    getCarts(): Promise<Cart[] | null>;
 }
