@@ -1,10 +1,19 @@
 import { HttpRequest,HttpResponse } from "../../protocols";
 import { CreateClientParams, PostClientRepository, PostClientController } from "./protocols";
 import { Client } from "../../../models/client";
+import { PasswordValidator } from "../../../utils/validators-password";
+import { CPFValidator } from "../../../utils/validators-cpf";
+import { EmailValidator } from "../../../utils/validators-email";
+
 
 export class postClientController implements PostClientController{
 
-    constructor(private readonly postClientRepository: PostClientRepository) {}
+    constructor(private readonly postClientRepository: PostClientRepository,
+        private readonly PasswordValidator: PasswordValidator,
+        private readonly EmailValidator: EmailValidator,
+        private readonly CPFValidator: CPFValidator
+    ) {}
+    
 
     async handle(httpResquest: HttpRequest<CreateClientParams>): Promise<HttpResponse<Client>> {
 
@@ -42,6 +51,28 @@ export class postClientController implements PostClientController{
                 return{
                     statusCode: 400,
                     body: "Missing param: CPF"
+                }
+            }
+
+            if (!this.PasswordValidator.validate(httpResquest.body.senha)) {
+                return {
+                    statusCode: 400,
+                    body: "Invalid password"
+                };
+                
+            }
+
+            if (!this.EmailValidator.validate(httpResquest.body.email)){
+                return{
+                    statusCode: 400,
+                    body: "Invalid email"
+                }
+            }
+
+            if (!this.CPFValidator.validate(httpResquest.body.cpf)){
+                return{
+                    statusCode: 400,
+                    body: "Invalid CPF"
                 }
             }
 
