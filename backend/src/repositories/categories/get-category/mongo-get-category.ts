@@ -1,5 +1,4 @@
-import { GetCategoryRespository, MongoClient,Category } from "../../../controllers/protocols";
-import { ObjectId } from "mongodb";
+import { GetCategoryRespository, MongoClient,Category, ObjectId } from "../../../controllers/protocols";
 
 export class MongoGetCategoryRepository implements GetCategoryRespository {
 

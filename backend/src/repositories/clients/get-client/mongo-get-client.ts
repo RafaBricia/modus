@@ -1,5 +1,4 @@
-import { GetClientRepository, MongoClient, Client } from "../../../controllers/protocols";
-import { ObjectId } from "mongodb";
+import { GetClientRepository, MongoClient, Client, ObjectId} from "../../../controllers/protocols";
 
 export class MongoGetClientsRepository implements GetClientRepository {
     async getClient(id: string): Promise<Client | null> {

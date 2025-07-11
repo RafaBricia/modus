@@ -34,6 +34,8 @@ export * from '../models/category'
 export * from '../models/order'
 
 export * from '../database/mongo'
+export { ObjectId } from "mongodb";
+
 
 export interface HttpResponse<T>{
     statusCode: number;

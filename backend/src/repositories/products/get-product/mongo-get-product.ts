@@ -1,5 +1,4 @@
-import { GetProductRepository, Product, MongoClient } from "../../../controllers/protocols";
-import { ObjectId } from "mongodb";
+import { GetProductRepository, Product, MongoClient, ObjectId } from "../../../controllers/protocols";
 
 export class MongoGetProductRepository implements GetProductRepository{
 

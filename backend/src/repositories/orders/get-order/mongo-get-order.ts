@@ -1,5 +1,4 @@
-import { GetOrderRepository, MongoClient, Order } from "../../../controllers/protocols";
-import { ObjectId } from "mongodb";
+import { GetOrderRepository, MongoClient, Order, ObjectId } from "../../../controllers/protocols";
 
 export class MongoGetOrderRepository implements GetOrderRepository{
     async getOrder(id:string): Promise<Order | null>{
