@@ -1,5 +1,4 @@
-import { HttpResponse } from "../../protocols";
-import { Cart } from "../../../models/cart";
+import { Cart, HttpResponse  } from "../../protocols";
 
 export interface GetCartController {
 

@@ -1,4 +1,4 @@
-import { GetAdministratorsController, GetAdministratorsRepository } from "./protocols";
+import { GetAdministratorsController, GetAdministratorsRepository } from "../../protocols";
 
 export class getAdministratorsController implements GetAdministratorsController{
 

@@ -1,5 +1,4 @@
-import { Category } from "../../../models/category";
-import { HttpResponse } from "../../protocols";
+import { HttpResponse , Category } from "../../protocols";
 
 export interface GetCategoryRespository{
     getCategory(id:string): Promise<Category | null>

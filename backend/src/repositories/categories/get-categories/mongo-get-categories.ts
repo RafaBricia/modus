@@ -1,6 +1,5 @@
-import { GetCategoriesRepository } from "../../../controllers/categories/get-categories/protocols";
-import { MongoClient } from "../../../database/mongo";
-import { Category } from "../../../models/category";
+import { GetCategoriesRepository, MongoClient,Category } from "../../../controllers/protocols";
+
 
 export class MongoGetCategoriesRepository implements GetCategoriesRepository {
 

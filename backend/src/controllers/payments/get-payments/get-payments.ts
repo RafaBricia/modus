@@ -1,4 +1,4 @@
-import { GetPaymentsController, GetPaymentsRepository } from "./protocols";
+import { GetPaymentsController, GetPaymentsRepository } from "../../protocols";
 
 
 export class getPaymentsController implements GetPaymentsController{

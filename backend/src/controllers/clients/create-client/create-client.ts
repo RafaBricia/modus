@@ -1,10 +1,6 @@
-import { HttpRequest,HttpResponse } from "../../protocols";
-import { CreateClientParams, PostClientRepository, PostClientController } from "./protocols";
-import { Client } from "../../../models/client";
-import { PasswordValidator } from "../../../utils/validators-password";
-import { CPFValidator } from "../../../utils/validators-cpf";
-import { EmailValidator } from "../../../utils/validators-email";
-
+import { HttpRequest,HttpResponse, CreateClientParams, PostClientRepository, 
+        PostClientController, Client, PasswordValidator, 
+        CPFValidator, EmailValidator  } from "../../protocols";
 
 export class postClientController implements PostClientController{
 

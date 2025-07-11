@@ -1,6 +1,4 @@
-import { Cart } from "../../../models/cart";
-import { MongoClient } from "../../../database/mongo";
-import { GetCartRespository } from "../../../controllers/carts/get-cart/protocols";
+import { GetCartRespository, MongoClient, Cart } from "../../../controllers/protocols";
 import { ObjectId } from "mongodb";
 
 export class MongoGetCartRepository implements GetCartRespository{

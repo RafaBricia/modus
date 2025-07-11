@@ -1,5 +1,4 @@
-import { Cart } from "../../../models/cart";
-import { HttpResponse } from "../../protocols";
+import { HttpResponse, Cart } from "../../protocols";
 
 export interface GetCartsController{
     handle(): Promise<HttpResponse<Cart[] | string>>;

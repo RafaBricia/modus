@@ -1,6 +1,4 @@
-import { GetAdministratorsRepository } from "../../../controllers/administrators/get-administrators/protocols";
-import { Administrator } from "../../../models/administrator";
-import { MongoClient } from "../../../database/mongo";
+import { GetAdministratorsRepository, MongoClient, Administrator } from "../../../controllers/protocols";
 
 export class MongoGetAdministratorsRepository implements GetAdministratorsRepository {
     async getAdministrators(): Promise<Administrator[]> {

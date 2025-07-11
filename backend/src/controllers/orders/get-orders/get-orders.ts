@@ -1,4 +1,4 @@
-import { GetOrdersRespository, GetOrdersController } from "./protocols";
+import { GetOrdersRespository, GetOrdersController } from "../../protocols";
 
 export class getOrdersController implements GetOrdersController{
   

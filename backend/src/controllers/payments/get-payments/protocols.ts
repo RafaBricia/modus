@@ -1,5 +1,4 @@
-import { HttpResponse } from "../../protocols";
-import { Payment } from "../../../models/payment";
+import { HttpResponse, Payment } from "../../protocols";
 
 export interface GetPaymentsController {
 handle(): Promise<HttpResponse<Payment[] | string>>

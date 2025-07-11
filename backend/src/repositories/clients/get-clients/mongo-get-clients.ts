@@ -1,6 +1,4 @@
-import { MongoClient } from "../../../database/mongo";
-import { Client } from "../../../models/client";
-import { GetClientsRepository } from "../../../controllers/clients/get-clients/protocols";
+import { GetClientsRepository, MongoClient, Client} from "../../../controllers/protocols";
 
 export class MongoGetClientsRepository implements GetClientsRepository {
   async getClients(): Promise<Client[]> {

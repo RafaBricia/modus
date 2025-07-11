@@ -1,5 +1,4 @@
-import { Administrator } from '../../../models/administrator';
-import { HttpResponse } from '../../protocols';
+import { Administrator, HttpResponse } from '../../protocols';
 
 export interface GetAdministratorsController{
     handle(): Promise<HttpResponse<Administrator[]>>

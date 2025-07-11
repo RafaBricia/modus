@@ -1,6 +1,4 @@
-import { Payment } from "../../../models/payment";
-import { HttpResponse } from "../../protocols";
-import { GetPaymentController, GetPaymentRepository } from "./protocols";
+import { HttpResponse, GetPaymentController, GetPaymentRepository, Payment } from "../../protocols";
 
 export class getPaymentController implements GetPaymentController{
 

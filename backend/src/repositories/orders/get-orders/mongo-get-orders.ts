@@ -1,6 +1,4 @@
-import { MongoClient } from "../../../database/mongo";
-import { GetOrdersRespository } from "../../../controllers/orders/get-orders/protocols";
-import { Order } from "../../../models/order";
+import { GetOrdersRespository, MongoClient, Order} from "../../../controllers/protocols";
 
 export class MongoGetOrdersRepository implements GetOrdersRespository{
 

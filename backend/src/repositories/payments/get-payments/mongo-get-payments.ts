@@ -1,6 +1,4 @@
-import { GetPaymentsRepository } from "../../../controllers/payments/get-payments/protocols";
-import { MongoClient } from "../../../database/mongo";
-import { Payment } from "../../../models/payment";
+import { GetPaymentsRepository, MongoClient, Payment } from "../../../controllers/protocols";
 
 export class MongoGetPaymentsRepository implements GetPaymentsRepository {
 

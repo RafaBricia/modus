@@ -1,6 +1,4 @@
-import { GetAdministratorRepository } from "../../../controllers/administrators/get-administrator/protocols";
-import { MongoClient } from "../../../database/mongo";
-import { Administrator } from "../../../models/administrator";
+import { GetAdministratorRepository, MongoClient, Administrator } from "../../../controllers/protocols";
 import { ObjectId } from "mongodb";
 
 export class MongoGetAdministratorRepository implements GetAdministratorRepository {

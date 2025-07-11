@@ -1,6 +1,4 @@
-import { GetCategoryController, GetCategoryRespository } from "./protocols";
-import { Category } from "../../../models/category";
-import { HttpResponse } from "../../protocols";
+import { HttpResponse, Category, GetCategoryController, GetCategoryRespository } from "../../protocols";
 
 export class getCategoryController implements GetCategoryController{
 

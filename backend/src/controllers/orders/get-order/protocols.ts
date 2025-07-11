@@ -1,5 +1,4 @@
-import { HttpResponse } from "../../protocols";
-import { Order } from "../../../models/order";
+import { HttpResponse, Order } from "../../protocols";
 
 export interface GetOrderRepository{
     getOrder(id: string): Promise<Order | null>

@@ -1,6 +1,4 @@
-import { GetOrderController, GetOrderRepository } from "./protocols";
-import { Order } from '../../../models/order';
-import { HttpResponse } from "../../protocols";
+import { HttpResponse, GetOrderController, GetOrderRepository, Order } from "../../protocols";
 
 
 export class getOrderController implements GetOrderController {

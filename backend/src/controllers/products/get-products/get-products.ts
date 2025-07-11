@@ -1,7 +1,4 @@
-import { GetProductsController, GetProductsRepository } from "./protocols";
-import { HttpResponse } from "../../protocols";
-import { Product } from "../../../models/product";
-
+import { GetProductsController, GetProductsRepository } from "../../protocols";
 
 export class getProductsController implements GetProductsController{
 

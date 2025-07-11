@@ -1,6 +1,4 @@
-import { GetClientController, GetClientRepository } from "./protocols";
-import { Client } from '../../../models/client';
-import { HttpResponse } from '../../protocols';
+import { HttpResponse, Client, GetClientController, GetClientRepository } from '../../protocols';
 
 export class getClientController implements GetClientController {
 

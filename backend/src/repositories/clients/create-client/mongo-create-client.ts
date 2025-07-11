@@ -1,6 +1,4 @@
-import { CreateClientParams, PostClientRepository } from "../../../controllers/clients/create-client/protocols";
-import { MongoClient } from "../../../database/mongo";
-import { Client } from "../../../models/client";
+import { CreateClientParams, PostClientRepository, MongoClient, Client } from "../../../controllers/protocols";
 
 export class MongoPostClient implements PostClientRepository{
 

@@ -1,5 +1,4 @@
-import { HttpResponse } from "../../protocols";
-import { Product } from "../../../models/product";
+import { HttpResponse, Product } from "../../protocols";
 
 export interface GetProductController{
     handle(id:string): Promise<HttpResponse<Product| string>>

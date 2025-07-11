@@ -1,6 +1,4 @@
-import { Administrator } from "../../../models/administrator";
-import { HttpResponse } from "../../protocols";
-import { GetAdministratorController, GetAdministratorRepository } from "./protocols"; 
+import { GetAdministratorController, GetAdministratorRepository , HttpResponse, Administrator} from "../../protocols"; 
 
 export class getAdministratorController implements GetAdministratorController{
 

@@ -1,6 +1,4 @@
-import { Cart } from "../../../models/cart";
-import { HttpResponse } from "../../protocols";
-import { GetCartController, GetCartRespository } from "./protocols";
+import { HttpResponse, GetCartController, GetCartRespository, Cart } from "../../protocols";
 
 export class getCartController implements GetCartController{
 

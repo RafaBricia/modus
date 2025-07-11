@@ -1,4 +1,4 @@
-import { GetCategoriesRepository, GetCategoriesController } from "./protocols";
+import { GetCategoriesRepository, GetCategoriesController } from "../../protocols";
 
 export class getCategoriesController implements GetCategoriesController{
     constructor(private readonly getCategoriesRepository: GetCategoriesRepository){}

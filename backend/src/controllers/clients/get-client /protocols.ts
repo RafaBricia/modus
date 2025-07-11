@@ -1,5 +1,4 @@
-import { Client } from '../../../models/client';
-import { HttpResponse } from '../../protocols';
+import { HttpResponse, Client } from '../../protocols';
 
 export interface GetClientController {
     handle(id: string): Promise<HttpResponse< Client | string>>;

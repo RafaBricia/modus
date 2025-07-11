@@ -1,6 +1,4 @@
-import { GetClientRepository } from "../../../controllers/clients/get-client /protocols";
-import { MongoClient } from "../../../database/mongo";
-import { Client } from "../../../models/client";
+import { GetClientRepository, MongoClient, Client } from "../../../controllers/protocols";
 import { ObjectId } from "mongodb";
 
 export class MongoGetClientsRepository implements GetClientRepository {

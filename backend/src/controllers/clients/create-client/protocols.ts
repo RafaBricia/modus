@@ -1,5 +1,4 @@
-import { Client } from "../../../models/client";
-import { HttpResponse, HttpRequest } from "../../protocols";
+import { HttpResponse, HttpRequest, Client } from "../../protocols";
 
 export interface CreateClientParams {
     email: string;

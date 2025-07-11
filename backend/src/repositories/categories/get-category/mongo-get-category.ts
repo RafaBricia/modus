@@ -1,7 +1,4 @@
-import { mongo } from "mongoose";
-import { GetCategoryRespository } from "../../../controllers/categories/get-category/protocols";
-import { MongoClient } from "../../../database/mongo";
-import { Category } from "../../../models/category";
+import { GetCategoryRespository, MongoClient,Category } from "../../../controllers/protocols";
 import { ObjectId } from "mongodb";
 
 export class MongoGetCategoryRepository implements GetCategoryRespository {

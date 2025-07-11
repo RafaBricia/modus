@@ -1,4 +1,4 @@
-import { GetClientsController, GetClientsRepository } from "./protocols";
+import { GetClientsController, GetClientsRepository } from "../../protocols";
 
 export class getClientsController implements GetClientsController{
 
