@@ -8,18 +8,23 @@ export * from './clients/create-client/protocols';
 
 export * from './carts/get-cart/protocols';
 export * from './carts/get-carts/protocols';
+export * from './carts/post-cart/protocols';
 
 export * from './categories/get-categories/protocols';
 export * from './categories/get-category/protocols';
+export * from './categories/post-category/protocols';
 
 export * from './orders/get-order/protocols';
 export * from './orders/get-orders/protocols';
+export * from './orders/post-order/protocols';
 
 export * from './payments/get-payment/protocols';
 export * from './payments/get-payments/protocols';
+export * from './payments/post-payment/protocols';
 
 export * from './products/get-product/protocols';
 export * from './products/get-products/protocols';
+export * from './products/post-product/protocols';
 
 export * from '../utils/validators-cpf'
 export * from '../utils/validators-email'

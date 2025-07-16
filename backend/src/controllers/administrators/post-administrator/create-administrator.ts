@@ -17,7 +17,7 @@ export class postAdministratorController implements PostAdministratorController{
             if(!httpResquest.body){
                 return {
                     statusCode: 400,
-                    body: "Missing param: body"  
+                    body: "No body"  
                 }
             }
 
