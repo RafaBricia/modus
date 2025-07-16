@@ -4,7 +4,7 @@ export * from './administrators/post-administrator/protocols';
 
 export * from './clients/get-client /protocols';
 export * from './clients/get-clients/protocols';
-export * from './clients/create-client/protocols';
+export * from './clients/post-client/protocols';
 
 export * from './carts/get-cart/protocols';
 export * from './carts/get-carts/protocols';

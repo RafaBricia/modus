@@ -1,4 +1,4 @@
-import { HttpRequest,HttpResponse, CreateClientParams, PostClientRepository, 
+import { HttpRequest,HttpResponse, PostClientParams, PostClientRepository, 
         PostClientController, Client, PasswordValidator, 
         CPFValidator, EmailValidator  } from "../../protocols";
 
@@ -11,7 +11,7 @@ export class postClientController implements PostClientController{
     ) {}
     
 
-    async handle(httpResquest: HttpRequest<CreateClientParams>): Promise<HttpResponse<Client>> {
+    async handle(httpResquest: HttpRequest<PostClientParams>): Promise<HttpResponse<Client>> {
 
         try{
 

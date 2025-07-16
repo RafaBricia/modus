@@ -1,8 +1,8 @@
-import { CreateClientParams, PostClientRepository, MongoClient, Client } from "../../../controllers/protocols";
+import { PostClientParams, PostClientRepository, MongoClient, Client } from "../../../controllers/protocols";
 
 export class MongoPostClient implements PostClientRepository{
 
-    async postClient(params: CreateClientParams): Promise<Client>{
+    async postClient(params: PostClientParams): Promise<Client>{
 
         const insertedID = await MongoClient.db
         .collection("Clients")

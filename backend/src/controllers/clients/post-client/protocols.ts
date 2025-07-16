@@ -1,6 +1,6 @@
 import { HttpResponse, HttpRequest, Client } from "../../protocols";
 
-export interface CreateClientParams {
+export interface PostClientParams {
     email: string;
     senha: string;
     nome: string;
@@ -8,9 +8,9 @@ export interface CreateClientParams {
 }
 
 export interface PostClientRepository {
-    postClient(params: CreateClientParams): Promise<Client>
+    postClient(params: PostClientParams): Promise<Client>
 }
 
 export interface PostClientController {
-    handle(httpResquest: HttpRequest<CreateClientParams>): Promise<HttpResponse<Client>>
+    handle(httpResquest: HttpRequest<PostClientParams>): Promise<HttpResponse<Client>>
 }
