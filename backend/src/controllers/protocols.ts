@@ -35,6 +35,7 @@ export * from '../models/order'
 
 export * from '../database/mongo'
 export { ObjectId } from "mongodb";
+export { Types } from "mongoose";
 
 
 export interface HttpResponse<T>{
