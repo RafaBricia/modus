@@ -1,5 +1,5 @@
 import { HttpRequest, HttpResponse , PostAdministratorController, PostAdministratorRepository, 
-        CreateAdmininstratorParams, EmailValidator, CPFValidator, 
+        PostAdmininstratorParams, EmailValidator, CPFValidator, 
         PasswordValidator , Administrator } from "../../protocols";
 
 export class postAdministratorController implements PostAdministratorController{
@@ -10,40 +10,29 @@ export class postAdministratorController implements PostAdministratorController{
         private readonly passwordValidator: PasswordValidator,
     ) {}
 
-    async handle(httpResquest: HttpRequest<CreateAdmininstratorParams>): Promise<HttpResponse<Administrator>>{
+    async handle(httpResquest: HttpRequest<PostAdmininstratorParams>): Promise<HttpResponse<Administrator>>{
 
         try {
 
-            if(!httpResquest.body){
+            const fieldRequired = ["cpf", "email", "name", "password"]
+
+            if(!httpResquest.body || httpResquest.body === null){
                 return {
                     statusCode: 400,
                     body: "No body"  
                 }
             }
 
-            if(!httpResquest.body.cpf){
-                return {
-                    statusCode: 400,
-                    body: "Missing param: CPF"  
+            for( const field of fieldRequired){
+                if(!httpResquest?.body?.[field as keyof PostAdmininstratorParams]?.length){
+                    return {
+                        statusCode: 400,
+                        body: `Missing param: ${field}`
+                    }
                 }
+
             }
-
-            if(!httpResquest.body.email){
-                return {
-                    statusCode: 400,
-                    body: "Missing param: Email"  
-   
-                }
-            }
-
-            if(!httpResquest.body.senha){
-                return{
-                    statusCode:400,
-                    body: "Missing param: Password"  
-
-                }
-            }
-
+            
             if(!this.cpfValidator.validate(httpResquest.body.cpf)){
                 return{
                     statusCode:400,

@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Administrator } from "../../protocols"
 
 
-export interface CreateAdmininstratorParams {
+export interface PostAdmininstratorParams {
     email: string;
     senha: string;
     nome: string;
@@ -9,9 +9,9 @@ export interface CreateAdmininstratorParams {
 }
 
 export interface PostAdministratorRepository {
-    postAdmininstrator(params: CreateAdmininstratorParams):Promise<Administrator>
+    postAdmininstrator(params: PostAdmininstratorParams):Promise<Administrator>
 }
 
 export interface PostAdministratorController {
-    handle(httpResquest: HttpRequest<CreateAdmininstratorParams>): Promise<HttpResponse<Administrator>>
+    handle(httpResquest: HttpRequest<PostAdmininstratorParams>): Promise<HttpResponse<Administrator>>
 }

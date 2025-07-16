@@ -1,8 +1,8 @@
-import { MongoClient, Administrator, PostAdministratorRepository, CreateAdmininstratorParams } from "../../../controllers/protocols";
+import { MongoClient, Administrator, PostAdministratorRepository, PostAdmininstratorParams } from "../../../controllers/protocols";
 
 export class MongoPostAdministrator implements PostAdministratorRepository {
 
-    async postAdmininstrator(params: CreateAdmininstratorParams): Promise<Administrator>{
+    async postAdmininstrator(params: PostAdmininstratorParams): Promise<Administrator>{
 
         const insertID = await MongoClient.db
         .collection("Administrators")
