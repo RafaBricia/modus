@@ -1,0 +1,14 @@
+import { HttpRequest, Category } from "../../protocols";
+
+export interface PatchCategoryParams {
+    id?: string;
+    tipo?: "Camisas"| "Saias"| "Calças"| "Sutiãs"| "Calcinhas"| "Cropped"| "Meias"
+}
+
+export interface PatchCategoryController {
+    
+}
+
+export interface PatchCategoryRepository {
+    patchCategory(id: string, params:PatchCategoryParams): Promise<Category>
+}
