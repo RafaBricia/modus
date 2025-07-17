@@ -1,4 +1,4 @@
-import { HttpRequest, Administrator } from "../../protocols";
+import { HttpRequest, Administrator, HttpResponse } from "../../protocols";
 
 export interface PatchAdministratorParams {
     email?: string;
@@ -8,7 +8,7 @@ export interface PatchAdministratorParams {
 }
 
 export interface PatchAdministratorController {
-    
+    handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Administrator>>
 }
 
 export interface PatchAdministratorRepository {

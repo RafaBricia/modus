@@ -1,4 +1,4 @@
-import { HttpRequest, Cart, Types } from "../../protocols";
+import { HttpRequest, Cart, Types, HttpResponse } from "../../protocols";
 
 export interface PatchCartParams {
     id?: string
@@ -8,7 +8,7 @@ export interface PatchCartParams {
 }
 
 export interface PatchCartController {
-    
+    handle(httpRequest:HttpRequest<any>): Promise<HttpResponse<Cart>>
 }
 
 export interface PatchCartRepository {

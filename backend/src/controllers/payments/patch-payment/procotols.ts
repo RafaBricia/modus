@@ -1,4 +1,4 @@
-import { HttpRequest, Payment, Types } from "../../protocols";
+import { HttpRequest, HttpResponse, Payment, Types } from "../../protocols";
 
 export interface PatchPaymentParams {
     id?: string;
@@ -9,7 +9,7 @@ export interface PatchPaymentParams {
 }
 
 export interface PatchPaymentController {
-    
+    handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Payment>>
 }
 
 export interface PatchPaymentRepository {

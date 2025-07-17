@@ -1,4 +1,4 @@
-import { HttpRequest, Order, Types } from "../../protocols";
+import { HttpRequest, HttpResponse, Order, Types } from "../../protocols";
 
 export interface PatchOrderParams {
     id?: string;
@@ -9,7 +9,7 @@ export interface PatchOrderParams {
 }
 
 export interface PatchOrderController {
-    
+    handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Order>>
 }
 
 export interface PatchOrderRepository {

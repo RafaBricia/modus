@@ -6,7 +6,7 @@ export interface PatchCategoryParams {
 }
 
 export interface PatchCategoryController {
-    
+    handle(httpRequest: HttpRequest<any>): Promise<HttpRequest<Category>>
 }
 
 export interface PatchCategoryRepository {
