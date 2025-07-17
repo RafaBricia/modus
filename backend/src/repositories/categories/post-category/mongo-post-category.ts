@@ -9,7 +9,7 @@ export class MongoPostCategoryRepository implements PostCategoryRepository {
         .insertOne({params})
 
         const category = await MongoClient.db
-        .collection<Omit<"Category", "id">>("Category")
+        .collection<Omit<Category, "id">>("Category")
         .findOne({_id:insertID})
 
          if(!category){

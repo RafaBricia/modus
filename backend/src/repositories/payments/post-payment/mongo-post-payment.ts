@@ -9,7 +9,7 @@ export class MongoPostPaymentRepository implements PostPaymentsRepository{
         .insertOne({params})
 
         const payment = await MongoClient.db
-        .collection<Omit<"Payment", "id">>("Payment")
+        .collection<Omit<Payment, "id">>("Payment")
         .findOne({id:insertID})
 
         if(!payment){

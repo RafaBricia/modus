@@ -9,7 +9,7 @@ export class MongoPostOrderRepositoy implements PostOrderRepository{
         .insertOne({params})
 
         const order = await MongoClient.db
-        .collection<Omit<"Order", "id">>("Order")
+        .collection<Omit<Order, "id">>("Order")
         .findOne({_id: insertID})
 
         if(!order){
