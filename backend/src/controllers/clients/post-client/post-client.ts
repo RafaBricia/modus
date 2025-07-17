@@ -15,41 +15,25 @@ export class postClientController implements PostClientController{
 
         try{
 
-            if(!httpResquest.body){
+            const fieldRequired = ["cpf", "email", "name", "password"]
+           
+            if(!httpResquest.body || httpResquest.body === null){
                 return {
                     statusCode: 400,
-                    body: "Missing param: body"
-                };
-            } 
+                    body: "No body"  
+                }
+            }
+
+            for( const field of fieldRequired){
+                if(!httpResquest?.body?.[field as keyof PostClientParams]?.length){
+                    return {
+                        statusCode: 400,
+                        body: `Missing param: ${field}`
+                    }
+                }
+
+            }
             
-            if (!httpResquest.body.email){
-                return{
-                    statusCode: 400,
-                    body: "Missing param: email"
-                }
-            }
-
-            if (!httpResquest.body.senha){
-                return{
-                    statusCode: 400,
-                    body: "Missing param: password"
-                }
-            }
-
-            if (!httpResquest.body.nome){
-                return{
-                    statusCode: 400,
-                    body: "Missing param: name"
-                }
-            }
-
-            if (!httpResquest.body.cpf){
-                return{
-                    statusCode: 400,
-                    body: "Missing param: CPF"
-                }
-            }
-
             if (!this.PasswordValidator.validate(httpResquest.body.senha)) {
                 return {
                     statusCode: 400,
