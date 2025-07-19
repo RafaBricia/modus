@@ -1,4 +1,4 @@
-import { HttpRequest, Category } from "../../protocols";
+import { HttpRequest, Category, HttpResponse } from "../../protocols";
 
 export interface PatchCategoryParams {
     id?: string;
@@ -6,7 +6,7 @@ export interface PatchCategoryParams {
 }
 
 export interface PatchCategoryController {
-    handle(httpRequest: HttpRequest<any>): Promise<HttpRequest<Category>>
+    handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<Category>>
 }
 
 export interface PatchCategoryRepository {
