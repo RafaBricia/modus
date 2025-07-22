@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Product } from "../../protocols";
 
 export interface DeleteProductRepository{
-    deleteProduct(params:DeleteProductParams):Promise<Product>
+    deleteProduct(id:string):Promise<Product>
 }
 
 export interface DeleteProductController{

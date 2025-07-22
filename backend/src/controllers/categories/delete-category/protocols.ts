@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Category } from "../../protocols";
 
 export interface DeleteCategoryRepository{
-    deleteCategory(params:DeleteCategoryParams):Promise<Category>
+    deleteCategory(id:string):Promise<Category>
 }
 
 export interface DeleteCategoryController{

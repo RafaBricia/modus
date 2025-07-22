@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Payment } from "../../protocols";
 
 export interface DeletePaymentRepository{
-    deletePayment(params:DeletePaymentParams):Promise<Payment>
+    deletePayment(id:string):Promise<Payment>
 }
 
 export interface DeletePaymentController{

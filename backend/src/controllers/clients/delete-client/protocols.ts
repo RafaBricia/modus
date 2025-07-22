@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Client } from "../../protocols";
 
 export interface DeleteClientRepository{
-    deleteClient(params:DeleteClientParams):Promise<Client>
+    deleteClient(id:string):Promise<Client>
 }
 
 export interface DeleteClientController{

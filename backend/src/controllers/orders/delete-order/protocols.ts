@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Order } from "../../protocols";
 
 export interface DeleteOrderRepository{
-    deleteOrder(params:DeleteOrderParams):Promise<Order>
+    deleteOrder(id:string):Promise<Order>
 }
 
 export interface DeleteOrderController{

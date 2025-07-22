@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Administrator } from "../../protocols";
 
 export interface DeleteAdministratorRepository{
-    deleteAdministrator(params:DeleteAdministratorParams):Promise<Administrator>
+    deleteAdministrator(id:string):Promise<Administrator>
 }
 
 export interface DeleteAdministratorController{

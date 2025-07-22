@@ -1,28 +1,29 @@
-// import { DeleteProductParams, DeleteProductRepository, MongoClient, Product } from "../../../controllers/protocols";
+import { DeleteProductRepository, MongoClient, ObjectId, Product } from "../../../controllers/protocols";
 
-// export class MongoDeleteProductRepository implements DeleteProductRepository {
-//   async deleteProduct(params: DeleteProductParams): Promise<Product> {
-//     const id = params.id;
+export class MongoDeleteProductRepository implements DeleteProductRepository {
+  async deleteProduct(id: string): Promise<Product> {
 
-//     const product = await MongoClient.db
-//       .collection<Omit<Product, "id">>("Product")
-//       .findOne({ id });
+    const product = await MongoClient.db
+      .collection<Omit<Product, "id">>("Product")
+      .findOne({ _id: new ObjectId(id) });
 
-//     if (!product) {
-//       throw new Error("Product not found");
-//     }
+    if (!product) {
+      throw new Error("Product not found");
+    }
 
-//     const { deletedCount } = await MongoClient.db
-//       .collection("Product")
-//       .deleteOne({ id });
+    const { deletedCount } = await MongoClient.db
+      .collection("Product")
+      .deleteOne({ _id: new ObjectId(id) });
 
-//     if (deletedCount === 0) {
-//       throw new Error("Error: product not deleted");
-//     }
+    if (deletedCount === 0) {
+      throw new Error("Error: product not deleted");
+    }
 
-//     return {
-//       id,
-//       ...product,
-//     };
-//   }
-// }
+    const {_id, ...rest} = product
+
+    return {
+      id: product._id.toHexString(),
+      ...rest,
+    };
+  }
+}

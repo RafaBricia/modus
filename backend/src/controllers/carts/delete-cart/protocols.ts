@@ -1,7 +1,7 @@
 import { HttpRequest, HttpResponse, Cart } from "../../protocols";
 
 export interface DeleteCartRepository{
-    deleteCart(params:DeleteCartParams):Promise<Cart>
+    deleteCart(id:string):Promise<Cart>
 }
 
 export interface DeleteCartController{
